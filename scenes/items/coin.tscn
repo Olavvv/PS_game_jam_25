@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://cjw2pq40ia00"]
+
+[ext_resource type="Texture2D" uid="uid://dwhfbuv20usg" path="res://assets/placeholder/coin/coin_1.png" id="1_6stmk"]
+[ext_resource type="Script" uid="uid://cbrifji1u8d4y" path="res://scripts/items/coin.gd" id="1_rmt6i"]
+[ext_resource type="Texture2D" uid="uid://05i503kttafa" path="res://assets/placeholder/coin/coin_2.png" id="2_rmt6i"]
+[ext_resource type="Texture2D" uid="uid://t5am1jkbd2s5" path="res://assets/placeholder/coin/coin_3.png" id="3_8unkk"]
+[ext_resource type="Texture2D" uid="uid://dtrv412kl7jey" path="res://assets/placeholder/coin/coin_4.png" id="4_kkxc7"]
+[ext_resource type="Texture2D" uid="uid://uymgqt0mdi8i" path="res://assets/placeholder/coin/coin_5.png" id="5_hc4uv"]
+[ext_resource type="Texture2D" uid="uid://f7f5qe2airxn" path="res://assets/placeholder/coin/coin_6.png" id="6_va1f1"]
+[ext_resource type="Texture2D" uid="uid://bj5imgekyrvmc" path="res://assets/placeholder/coin/coin_7.png" id="7_pe0em"]
+[ext_resource type="Texture2D" uid="uid://dj3qfni36iacc" path="res://assets/placeholder/coin/coin_8.png" id="8_o7882"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dk64t"]
+radius = 2.23607
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n1ndv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6stmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_rmt6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8unkk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kkxc7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hc4uv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_va1f1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pe0em")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_o7882")
+}],
+"loop": true,
+"name": &"default",
+"speed": 60.0
+}]
+
+[node name="Coin" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_rmt6i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dk64t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 0.5)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_n1ndv")
+frame = 2
+frame_progress = 0.203637
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 16
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.1
+initial_velocity_max = 40.4
