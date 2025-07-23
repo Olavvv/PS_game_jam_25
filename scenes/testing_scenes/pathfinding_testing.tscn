@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmunq4m4y6llg"]
+
+[ext_resource type="PackedScene" uid="uid://b3f3stkgl2sgq" path="res://scenes/chars/the_chaser.tscn" id="1_uun2i"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6u8d7"]
+vertices = PackedVector2Array(-225.063, 615.031, -298.797, 418.703, -266.906, 124.469, -84.1563, 384.617, -20.2578, 615.992, 166.141, -125.922, 291.109, -255.617, 364.656, -132.109, 294.992, -42.6563, 170.367, 458.523, 198.008, 559.188, 253.883, 201.953, -94.2422, 124.703, -118.25, -19.3125, -59.1563, -73.8516, 523.813, 22.1016, 683.961, -65.4609, 572.227, 310.523, 726.867, 91.8672, 707.141, 296.063, 648.242, 493.031)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(4, 3, 9, 10), PackedInt32Array(8, 11, 12, 13, 14, 5), PackedInt32Array(15, 8, 7, 16), PackedInt32Array(17, 15, 16, 18, 19, 20), PackedInt32Array(17, 20, 10, 9)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-129, -23, -103, 133, 262, 214, 303, -30, 515, 30, 561, 304, 170, 448, -78, 376, -274, 97, -309, 420, -232, 625, -19, 626, 200, 569, 656, 502, 717, 298, 737, 91, 692, -74, 371, -141, 293, -272, 161, -135, -64, -83)])
+
+[node name="PathfindingTesting" type="Node2D"]
+
+[node name="TheChaser" parent="." node_paths=PackedStringArray("path_dest") instance=ExtResource("1_uun2i")]
+path_dest = NodePath("../PathFindingDestination")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_6u8d7")
+
+[node name="PathFindingDestination" type="Marker2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+z_index = 9
+position = Vector2(-202, 387)
+gizmo_extents = 64.1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 197)
+zoom = Vector2(0.71, 0.71)
