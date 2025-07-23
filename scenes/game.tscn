@@ -1,12 +1,84 @@
-[gd_scene load_steps=2 format=3 uid="uid://daf46daw0itbj"]
+[gd_scene load_steps=9 format=4 uid="uid://daf46daw0itbj"]
 
 [ext_resource type="PackedScene" uid="uid://bqus2snagbxwj" path="res://scenes/chars/player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://b3f3stkgl2sgq" path="res://scenes/chars/the_chaser.tscn" id="2_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://cwpfntu75caw6" path="res://assets/sprites/tilemaps/tilemap_1.aseprite" id="2_yqjtg"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uwrxv"]
+polygon = PackedVector2Array(134, 21, 151, 57, 95, 107, 14, 103, 25, 60, 32, 64, 44, 79, 76, 89, 107, 63)
+
+[sub_resource type="Environment" id="Environment_uwrxv"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 0.5
+glow_strength = 0.1
+glow_bloom = 0.5
+fog_enabled = true
+fog_density = 0.6732
+volumetric_fog_density = 0.6079
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_yqjtg"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
+texture = ExtResource("2_yqjtg")
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -1, -8, -1)
+11:0/0 = 0
+11:0/0/z_index = 6
+11:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_yqjtg")
+11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, 1, 8, 1, -1, -8, -1)
+
+[sub_resource type="TileSet" id="TileSet_lbhrr"]
+occlusion_layer_0/light_mask = 1
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_lnu2h")
 
 [node name="Game" type="Node2D"]
 
+[node name="TheChaser" parent="." instance=ExtResource("2_lnu2h")]
+position = Vector2(123, -16)
+
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
+position = Vector2(-1, -1)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2, 2)
 position_smoothing_speed = 50.0
 rotation_smoothing_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="Player"]
+z_index = -5
+z_as_relative = false
+offset_left = -408.0
+offset_top = -212.0
+offset_right = 317.0
+offset_bottom = 220.0
+color = Color(0.0253638, 0.0253638, 0.0253638, 1)
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Environment"]
+modulate = Color(0, 0, 0, 1)
+z_index = 1
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/StaticBody2D"]
+position = Vector2(32, 64)
+polygon = PackedVector2Array(0, 0, -7, -4, -18, 39, 63, 43, 119, -7, 102, -43, 75, -1, 44, 25, 12, 15)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Environment"]
+occluder = SubResource("OccluderPolygon2D_uwrxv")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uwrxv")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+z_index = 2
+tile_map_data = PackedByteArray("AAD//wEAAAACAAAAAAD//wAAAAACAAAAAAD/////AAACAAAAAAAAAP//AAACAAAAAAABAP//AAACAAAAAAAAAAAAAAACAAAAAAAAAAEAAAACAAAAAAABAAAAAAACAAAAAAABAAEAAAACAAAAAAD+////AAACAAAAAAD+/wAAAAACAAAAAAD+/wEAAAACAAAAAAD9/wEAAAACAAAAAAD9////AAACAAAAAAD9/wIAAAADAAAAADD+/wIAAAADAAAAADD//wIAAAADAAAAADAAAAIAAAADAAAAADABAAIAAAADAAAAADACAAIAAAAEAAAAAFACAP7/AAAEAAAAAAD8//7/AAAEAAAAAGD8/wIAAAAEAAAAADD9//7/AAADAAAAAAD+//7/AAADAAAAAAD///7/AAADAAAAAAAAAP7/AAADAAAAAAABAP7/AAADAAAAAAACAP//AAADAAAAAFACAAAAAAADAAAAAFACAAEAAAADAAAAAFD7//7/AAALAAAAAAD7/wIAAAALAAAAAAD7/wMAAAALAAAAAAD8/wMAAAALAAAAAAD9/wMAAAALAAAAAAD+/wMAAAALAAAAAAD//wMAAAALAAAAAAAAAAMAAAALAAAAAAABAAMAAAALAAAAAAACAAMAAAALAAAAAAADAAMAAAALAAAAAAADAAIAAAALAAAAAAADAAEAAAALAAAAAAADAAAAAAALAAAAAAADAP//AAALAAAAAAADAP7/AAALAAAAAAADAP3/AAALAAAAAAACAP3/AAALAAAAAAABAP3/AAALAAAAAAAAAP3/AAALAAAAAAD///3/AAALAAAAAAD+//3/AAALAAAAAAD9//3/AAALAAAAAAD8//3/AAALAAAAAAD7//3/AAALAAAAAAD9/wAAAAACAAAAAAD8/wAAAAACAAAAAAD7/wAAAAACAAAAAAD6/wAAAAACAAAAAAD5/wAAAAACAAAAAAD4/wAAAAACAAAAAAD3/wAAAAACAAAAAAD8////AAACAAAAAAD7////AAACAAAAAAD6////AAACAAAAAAD5////AAACAAAAAAD4////AAACAAAAAAD3////AAACAAAAAAD8/wEAAAACAAAAAAD7/wEAAAACAAAAAAD6/wEAAAACAAAAAAD5/wEAAAACAAAAAAD4/wEAAAACAAAAAAD3/wEAAAACAAAAAAA=")
+tile_set = SubResource("TileSet_lbhrr")

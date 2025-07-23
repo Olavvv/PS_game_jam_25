@@ -1,5 +1,114 @@
-[gd_scene format=3 uid="uid://b3f3stkgl2sgq"]
+[gd_scene load_steps=8 format=4 uid="uid://b3f3stkgl2sgq"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_b82b1"]
+_data = PackedByteArray("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")
+size_override = Vector2(384, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bc4m"]
+atlas = SubResource("PortableCompressedTexture2D_b82b1")
+region = Rect2(0, 0, 128, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1juoc"]
+atlas = SubResource("PortableCompressedTexture2D_b82b1")
+region = Rect2(128, 0, 128, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_881c4"]
+atlas = SubResource("PortableCompressedTexture2D_b82b1")
+region = Rect2(256, 0, 128, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jeh3"]
+atlas = SubResource("PortableCompressedTexture2D_b82b1")
+region = Rect2(0, 80, 128, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x88vi"]
+atlas = SubResource("PortableCompressedTexture2D_b82b1")
+region = Rect2(128, 80, 128, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7etl4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bc4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bc4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1juoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1juoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1juoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_881c4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jeh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jeh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jeh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jeh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jeh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x88vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x88vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1juoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bc4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bc4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bc4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bc4m")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
 
 [node name="TheChaser" type="Node2D"]
+z_index = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_7etl4")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.958069
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://assets/sprites/animations/chars/Chaser.aseprite",
+"source_uid": 7825740482910735806
+}
+metadata/_aseprite_wizard_source_file_hash_ = "cdabe1c9d8c652d06bfc7f132997a9ef"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjw2pq40ia00"]
+[gd_scene load_steps=13 format=3 uid="uid://cjw2pq40ia00"]
 
 [ext_resource type="Texture2D" uid="uid://dwhfbuv20usg" path="res://assets/placeholder/coin/coin_1.png" id="1_6stmk"]
 [ext_resource type="Script" uid="uid://cbrifji1u8d4y" path="res://scripts/items/coin.gd" id="1_rmt6i"]
@@ -9,9 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://f7f5qe2airxn" path="res://assets/placeholder/coin/coin_6.png" id="6_va1f1"]
 [ext_resource type="Texture2D" uid="uid://bj5imgekyrvmc" path="res://assets/placeholder/coin/coin_7.png" id="7_pe0em"]
 [ext_resource type="Texture2D" uid="uid://dj3qfni36iacc" path="res://assets/placeholder/coin/coin_8.png" id="8_o7882"]
+[ext_resource type="AudioStream" uid="uid://ceuhav68acdnm" path="res://assets/audio/sfx/coin_hit.wav" id="10_8unkk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dk64t"]
-radius = 2.23607
+radius = 8.06226
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n1ndv"]
 animations = [{
@@ -45,8 +46,11 @@ animations = [{
 "speed": 60.0
 }]
 
-[node name="Coin" type="RigidBody2D"]
-gravity_scale = 0.0
+[node name="Area2D" type="Area2D" groups=["coin"]]
+z_index = 5
+z_as_relative = false
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_rmt6i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -67,3 +71,9 @@ spread = 50.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 10.1
 initial_velocity_max = 40.4
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_8unkk")
+volume_db = -15.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

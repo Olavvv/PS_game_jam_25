@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://djq32jtqcfrwg"
+path="res://.godot/imported/Chaser.aseprite-1feb514d6ea2a615c611adf7b4b83b3b.res"
+
+[deps]
+
+source_file="res://assets/sprites/animations/chars/Chaser.aseprite"
+dest_files=["res://.godot/imported/Chaser.aseprite-1feb514d6ea2a615c611adf7b4b83b3b.res"]
+
+[params]
+
