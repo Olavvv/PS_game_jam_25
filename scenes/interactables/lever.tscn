@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://c81kn3jgikocb"]
+[gd_scene load_steps=10 format=3 uid="uid://c81kn3jgikocb"]
 
 [ext_resource type="Texture2D" uid="uid://c37nkifuyiq6x" path="res://assets/sprites/animations/interactables/lever.png" id="1_g73kl"]
 [ext_resource type="Script" uid="uid://6ni3kk3mcbeo" path="res://scenes/interactables/lever.gd" id="1_kv8us"]
-[ext_resource type="AudioStream" uid="uid://coom3wcvvx7m3" path="res://assets/audio/sfx/lever_activate.wav" id="3_cyoba"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ka50h"]
 size = Vector2(8, 8)
@@ -73,7 +72,6 @@ shape = SubResource("RectangleShape2D_kv8us")
 debug_color = Color(0.317439, 0.497184, 0.984404, 0.42)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_cyoba")
 volume_db = -10.0
 
 [connection signal="area_entered" from="CoinDetectArea" to="." method="_on_area_2d_area_entered"]
