@@ -65,5 +65,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if tween and tween.is_valid():
 		tween.kill()
 	
-	hit_sound_player.play()
+	if _current_state == COIN_STATES.FLYING:
+		hit_sound_player.play()
+		
 	_next_state = COIN_STATES.PICKABLE

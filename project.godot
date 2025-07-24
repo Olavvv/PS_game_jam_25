@@ -18,6 +18,11 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 shapes/collision/draw_2d_outlines=false
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")

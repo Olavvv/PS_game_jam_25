@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8a65rvi6pupi"]
+
+[ext_resource type="PackedScene" uid="uid://bqus2snagbxwj" path="res://scenes/chars/player.tscn" id="1_sb44j"]
+[ext_resource type="PackedScene" uid="uid://c81kn3jgikocb" path="res://scenes/interactables/lever.tscn" id="2_lsvi1"]
+
+[node name="LeverTesting" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_sb44j")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(3.035, 3.035)
+
+[node name="Lever" parent="." instance=ExtResource("2_lsvi1")]
+position = Vector2(117, 0)

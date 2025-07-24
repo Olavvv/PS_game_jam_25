@@ -94,7 +94,7 @@ size = Vector2(53, 50)
 [node name="TheChaser" type="CharacterBody2D"]
 z_index = 5
 collision_layer = 8
-collision_mask = 7
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_5bc4m")
 

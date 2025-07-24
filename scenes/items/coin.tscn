@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjw2pq40ia00"]
+[gd_scene load_steps=14 format=3 uid="uid://cjw2pq40ia00"]
 
 [ext_resource type="Texture2D" uid="uid://dwhfbuv20usg" path="res://assets/placeholder/coin/coin_1.png" id="1_6stmk"]
 [ext_resource type="Script" uid="uid://cbrifji1u8d4y" path="res://scripts/items/coin.gd" id="1_rmt6i"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bj5imgekyrvmc" path="res://assets/placeholder/coin/coin_7.png" id="7_pe0em"]
 [ext_resource type="Texture2D" uid="uid://dj3qfni36iacc" path="res://assets/placeholder/coin/coin_8.png" id="8_o7882"]
 [ext_resource type="AudioStream" uid="uid://ceuhav68acdnm" path="res://assets/audio/sfx/coin_hit.wav" id="10_8unkk"]
+[ext_resource type="Texture2D" uid="uid://buskoex0wmdis" path="res://assets/sprites/particles/coin_shine.png" id="10_kkxc7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dk64t"]
 radius = 8.06226
@@ -65,12 +66,18 @@ frame_progress = 0.203637
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 16
+amount = 4
+texture = ExtResource("10_kkxc7")
+emission_shape = 4
+emission_points = PackedVector2Array(-3, 3, 0, 3, 3, 3)
+emission_colors = PackedColorArray()
 direction = Vector2(0, -1)
-spread = 50.0
+spread = 30.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 10.1
 initial_velocity_max = 40.4
+scale_amount_min = 0.2
+scale_amount_max = 0.2
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_8unkk")

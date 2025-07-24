@@ -15,7 +15,7 @@ func _ready():
 	navigation_agent.path_desired_distance = 3.0
 	navigation_agent.target_desired_distance = 3.0
 
-	# Make sure to not await during _ready.
+	# Stops await during _ready
 	actor_setup.call_deferred()
 
 func _process(delta: float) -> void:
