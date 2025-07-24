@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var walk_sound_player: AudioStreamPlayer2D = $WalkSoundPlayer
 @export var path_dest: Node
 
 var movement_speed: float = 200.0
@@ -16,20 +17,10 @@ func _ready():
 	navigation_agent.target_desired_distance = 3.0
 
 	# Stops await during _ready
-	actor_setup.call_deferred()
+	_actor_setup.call_deferred()
 
 func _process(delta: float) -> void:
-	set_movement_target(path_dest.position)
-
-func actor_setup():
-	# Wait for the first physics frame so the NavigationServer can sync.
-	await get_tree().physics_frame
-
-	# Now that the navigation map is no longer empty, set the movement target.
-	set_movement_target(movement_target_position)
-
-func set_movement_target(movement_target: Vector2):
-	navigation_agent.target_position = movement_target
+	_set_movement_target(path_dest.position)
 
 func _physics_process(delta):
 	if navigation_agent.is_navigation_finished():
@@ -40,3 +31,17 @@ func _physics_process(delta):
 
 	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
 	move_and_slide()
+
+func _actor_setup():
+	# Wait for the first physics frame so the NavigationServer can sync.
+	await get_tree().physics_frame
+
+	# Now that the navigation map is no longer empty, set the movement target.
+	_set_movement_target(movement_target_position)
+
+func _set_movement_target(movement_target: Vector2):
+	navigation_agent.target_position = movement_target
+
+func _audio_anim_matcher():
+	if velocity.length() > 0.5:
+		walk_sound_player.play()

@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://f7f5qe2airxn" path="res://assets/placeholder/coin/coin_6.png" id="6_va1f1"]
 [ext_resource type="Texture2D" uid="uid://bj5imgekyrvmc" path="res://assets/placeholder/coin/coin_7.png" id="7_pe0em"]
 [ext_resource type="Texture2D" uid="uid://dj3qfni36iacc" path="res://assets/placeholder/coin/coin_8.png" id="8_o7882"]
-[ext_resource type="AudioStream" uid="uid://ceuhav68acdnm" path="res://assets/audio/sfx/coin_hit.wav" id="10_8unkk"]
+[ext_resource type="AudioStream" uid="uid://ceuhav68acdnm" path="res://assets/audio/sfx/items/coin_hit.wav" id="10_8unkk"]
 [ext_resource type="Texture2D" uid="uid://buskoex0wmdis" path="res://assets/sprites/particles/coin_shine.png" id="10_kkxc7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dk64t"]

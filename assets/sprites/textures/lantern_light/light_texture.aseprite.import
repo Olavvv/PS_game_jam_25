@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dldwmb857w2s4"
+path="res://.godot/imported/light_texture.aseprite-d4f94d61b9fd5e0f8d61c16cbf5bf444.res"
+
+[deps]
+
+source_file="res://assets/sprites/textures/lantern_light/light_texture.aseprite"
+dest_files=["res://.godot/imported/light_texture.aseprite-d4f94d61b9fd5e0f8d61c16cbf5bf444.res"]
+
+[params]
+

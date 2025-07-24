@@ -5,12 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://cwpfntu75caw6" path="res://assets/sprites/tilemaps/tilemap_1.aseprite" id="2_yqjtg"]
 
 [sub_resource type="Environment" id="Environment_uwrxv"]
-background_mode = 3
-glow_enabled = true
-glow_intensity = 0.5
-glow_strength = 0.1
-glow_bloom = 0.5
-fog_enabled = true
+background_mode = 1
+ambient_light_source = 2
 fog_density = 0.6732
 volumetric_fog_density = 0.6079
 
@@ -75,3 +71,6 @@ tile_set = SubResource("TileSet_lbhrr")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Environment"]
 navigation_polygon = SubResource("NavigationPolygon_lnu2h")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Environment"]
+color = Color(0, 0, 0, 1)
