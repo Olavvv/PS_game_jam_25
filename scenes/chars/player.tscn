@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://bqus2snagbxwj"]
+[gd_scene load_steps=13 format=4 uid="uid://bqus2snagbxwj"]
 
 [ext_resource type="Script" uid="uid://cmdb83wvdwcs" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://dr411y2g23a3t" path="res://assets/other/aim_circle.png" id="2_adwjk"]
 [ext_resource type="Texture2D" uid="uid://bsa0mqusqpuhn" path="res://assets/sprites/textures/lantern_light/light_texture_1.png" id="3_wyvug"]
+[ext_resource type="AudioStream" uid="uid://dt5ku7syqumt4" path="res://assets/audio/sfx/chars/player/main_walk1.wav" id="4_4yrg8"]
+[ext_resource type="AudioStream" uid="uid://b1kv6s3k5vedn" path="res://assets/audio/sfx/chars/player/main_walk2.wav" id="5_xv662"]
+[ext_resource type="AudioStream" uid="uid://bv7pir3dpnu8h" path="res://assets/audio/sfx/chars/player/main_walk3.wav" id="6_rqvr5"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_wyvug"]
 _data = PackedByteArray("AAADAAUAAAABAAAAIAAAACAAAADaAAAAUklGRtIAAABXRUJQVlA4TMUAAAAvH8AHEEegKAAZyJ8Sgmq1UmcfNY2kQNd9qKBHDQpRiAYjAZDQWcH/JyTQHbph/gMAAN3Cop9XNF30n+yC21rb1uSL1rx4yWECW0BnoPb3r+M13b93khdbIKL/E2B/ut0CgbJCW1iNOgIB3X0jIGskIHOcSVlG1pnAzJFs2Fe76XV6pRP4JM/KpUWmfcZOEy+cXpkqRpKmk6YvsxmkBQAEyqgFBW9d8Joj1bzX6pf3cyd57710AYBUsZZpweA7u1O8O8UfAgA=")
@@ -19,8 +22,68 @@ animations = [{
 "texture": SubResource("AtlasTexture_t25bx")
 }],
 "loop": true,
-"name": &"default",
-"speed": 10.0
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t25bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t25bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t25bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t25bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t25bx")
+}],
+"loop": true,
+"name": &"move_down",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t25bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t25bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t25bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t25bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t25bx")
+}],
+"loop": true,
+"name": &"move_sideways",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t25bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t25bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t25bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t25bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t25bx")
+}],
+"loop": true,
+"name": &"move_up",
+"speed": 4.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
@@ -28,6 +91,12 @@ size = Vector2(14.5, 28.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_adwjk"]
 radius = 20.025
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wyvug"]
+streams_count = 3
+stream_0/stream = ExtResource("4_4yrg8")
+stream_1/stream = ExtResource("5_xv662")
+stream_2/stream = ExtResource("6_rqvr5")
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
@@ -39,6 +108,8 @@ script = ExtResource("1_3vyb7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_r04vw")
+animation = &"move_up"
+autoplay = "idle"
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
 "layer_section": false,
@@ -87,3 +158,9 @@ shape = SubResource("CircleShape2D_adwjk")
 debug_color = Color(0.684983, 0.461799, 0.528465, 0.42)
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="WalkingSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_wyvug")
+volume_db = -20.0
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

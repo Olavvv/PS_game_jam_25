@@ -19,9 +19,11 @@ const max_aim_dist_mult = 150.0
 @onready var coin_scene := load("res://scenes/items/coin.tscn")
 var coin: Area2D
 @onready var light_change_timer: Timer  = $Timer
+@onready var walking_sound_player: AudioStreamPlayer2D = $WalkingSound
 
-# Coin available?
+# Bool flags
 var has_coin: bool
+var is_sprinting: bool = false
 
 # Aiming vars
 var aim_direction: Vector2
@@ -43,15 +45,18 @@ func _process(delta: float) -> void:
 	aim_point_update()
 	coin_pickup()
 	queue_redraw()
+	animation_handler()
 	
 
 func _physics_process(delta: float) -> void:
 	var direction := Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
 	
 	if Input.is_action_pressed("sprint"):
+		is_sprinting = true
 		if SPEED == 50.0:
 			SPEED = SPEED * 1.5
 	else:
+		is_sprinting = false
 		SPEED = 50.0
 	if direction:
 		velocity = (direction * SPEED)
@@ -100,7 +105,25 @@ func aim_point_update() -> void:
 
 
 func animation_handler():
-	pass
+	if is_sprinting:
+		animation_sprite.speed_scale = 1.5
+	else:
+		animation_sprite.speed_scale = 1.0
+	
+	animation_sprite.flip_h = false # Default statement
+	if velocity.x > 0:
+		animation_sprite.play("move_sideways")
+	elif velocity.x < 0:
+		animation_sprite.play("move_sideways")
+		animation_sprite.flip_h = true
+	elif velocity.y > 0:
+		animation_sprite.play("move_down")
+	elif velocity.y < 0:
+		animation_sprite.play("move_up")
+	else:
+		animation_sprite.play("idle")
+
+
 
 ## SIGNAL HANDLERS
 
@@ -110,6 +133,14 @@ func _on_light_timer_timeout() -> void:
 	else:
 		player_glow.texture = light_images[0]
 	light_change_timer.start(1.0)
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if animation_sprite.animation == "idle":
+		return
+		
+	if ((animation_sprite.frame % 2) == 0) and (animation_sprite.frame != 0):
+		print(animation_sprite.frame)
+		walking_sound_player.play()
 
 ## DEBUG
 func _draw() -> void:

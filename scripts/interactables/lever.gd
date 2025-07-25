@@ -9,8 +9,8 @@ signal activate
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 ## Audios
-var activate_WAV: AudioStreamWAV = load("res://assets/audio/sfx/lever_activate.wav")
-var deactivate_WAV: AudioStreamWAV = load("res://assets/audio/sfx/lever_activate.wav")
+var activate_WAV: AudioStreamWAV = load("res://assets/audio/sfx/interactables/lever/lever_activate.wav")
+var deactivate_WAV: AudioStreamWAV = load("res://assets/audio/sfx/interactables/lever/lever_deactivate.wav")
 
 ## States
 var _current_active_state: bool = false
