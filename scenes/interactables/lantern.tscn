@@ -74,9 +74,12 @@ debug_color = Color(0.317439, 0.497184, 0.984404, 0.42)
 [node name="PointLight2D" type="PointLight2D" parent="."]
 z_index = 5
 z_as_relative = false
+energy = 0.2
 shadow_filter = 1
 texture = SubResource("GradientTexture2D_p567b")
+texture_scale = 0.2
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="area_entered" from="CoinDetectArea" to="." method="_on_coin_detect_area_area_entered"]

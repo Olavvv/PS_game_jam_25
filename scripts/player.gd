@@ -36,6 +36,7 @@ var toss_location := Vector2(0,0)
 
 func _ready() -> void:
 	aim_circle.position = Vector2(1,0)
+	
 	has_coin = true
 	light_change_timer.timeout.connect(_on_light_timer_timeout)
 	player_glow.texture = light_images[0]

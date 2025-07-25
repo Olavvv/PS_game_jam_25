@@ -39,13 +39,6 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(38, -22, 38, 39, -55, 3
 
 [node name="Game" type="Node2D"]
 
-[node name="lantern" parent="." instance=ExtResource("4_lbhrr")]
-position = Vector2(-104, 11)
-
-[node name="TheChaser" parent="." node_paths=PackedStringArray("path_dest") instance=ExtResource("2_lnu2h")]
-position = Vector2(123, -16)
-path_dest = NodePath(".")
-
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(-1, -1)
 
@@ -53,15 +46,6 @@ position = Vector2(-1, -1)
 zoom = Vector2(2, 2)
 position_smoothing_speed = 50.0
 rotation_smoothing_enabled = true
-
-[node name="ColorRect" type="ColorRect" parent="Player"]
-z_index = -5
-z_as_relative = false
-offset_left = -408.0
-offset_top = -212.0
-offset_right = 317.0
-offset_bottom = 220.0
-color = Color(0.0253638, 0.0253638, 0.0253638, 1)
 
 [node name="Environment" type="Node" parent="."]
 
@@ -76,5 +60,21 @@ tile_set = SubResource("TileSet_lbhrr")
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Environment"]
 navigation_polygon = SubResource("NavigationPolygon_lnu2h")
 
+[node name="ColorRect" type="ColorRect" parent="Environment"]
+offset_left = -409.0
+offset_top = -213.0
+offset_right = 316.0
+offset_bottom = 219.0
+color = Color(0.0253638, 0.0253638, 0.0253638, 1)
+
 [node name="CanvasModulate" type="CanvasModulate" parent="Environment"]
+light_mask = 0
+visibility_layer = 0
 color = Color(0, 0, 0, 1)
+
+[node name="lantern" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(-104, 11)
+
+[node name="TheChaser" parent="." node_paths=PackedStringArray("path_dest") instance=ExtResource("2_lnu2h")]
+position = Vector2(123, -16)
+path_dest = NodePath(".")

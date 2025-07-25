@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://b3f3stkgl2sgq"]
+[gd_scene load_steps=16 format=4 uid="uid://b3f3stkgl2sgq"]
 
 [ext_resource type="Script" uid="uid://d3kc633j2in1u" path="res://scripts/chars/the_chaser.gd" id="1_5bc4m"]
 [ext_resource type="AudioStream" uid="uid://c0fsw5jxkoev7" path="res://assets/audio/sfx/chars/chaser/chaser_stomping1.wav" id="2_7jeh3"]
@@ -100,6 +100,16 @@ stream_0/stream = ExtResource("2_7jeh3")
 stream_1/stream = ExtResource("3_x88vi")
 stream_2/stream = ExtResource("4_7etl4")
 
+[sub_resource type="Gradient" id="Gradient_7jeh3"]
+offsets = PackedFloat32Array(0.0324675, 0.668831)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x88vi"]
+gradient = SubResource("Gradient_7jeh3")
+fill = 1
+fill_from = Vector2(0, 0.0137615)
+fill_to = Vector2(0.527523, 0.362385)
+
 [node name="TheChaser" type="CharacterBody2D"]
 z_index = 5
 collision_layer = 8
@@ -142,3 +152,9 @@ path_postprocessing = 1
 
 [node name="WalkSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_5bc4m")
+
+[node name="Ligting" type="Node2D" parent="."]
+
+[node name="ConeLight" type="PointLight2D" parent="Ligting"]
+position = Vector2(28, 16)
+texture = SubResource("GradientTexture2D_x88vi")
