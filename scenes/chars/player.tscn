@@ -85,3 +85,5 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpRange"]
 shape = SubResource("CircleShape2D_adwjk")
 debug_color = Color(0.684983, 0.461799, 0.528465, 0.42)
+
+[node name="Timer" type="Timer" parent="."]

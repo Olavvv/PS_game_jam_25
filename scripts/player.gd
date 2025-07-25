@@ -7,7 +7,7 @@ const max_aim_dist_mult = 150.0
 ## Variables
 
 # Eported vars
-@export var SPEED := 150.0
+@export var SPEED := 50.0
 @export var DECEL_SPEED := 50.0
 @export var AIM_CIRCLE_RADIUS := 30.0
 
@@ -15,8 +15,10 @@ const max_aim_dist_mult = 150.0
 @onready var aim_circle: Sprite2D = $AimCircle
 @onready var animation_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var pick_up_range: Area2D = $PickUpRange
+@onready var player_glow: PointLight2D = $PointLight2D
 @onready var coin_scene := load("res://scenes/items/coin.tscn")
 var coin: Area2D
+@onready var light_change_timer: Timer  = $Timer
 
 # Coin available?
 var has_coin: bool
@@ -26,9 +28,16 @@ var aim_direction: Vector2
 var aim_strength := 0.5
 var toss_location := Vector2(0,0)
 
+## Light vars
+@onready var light_images:= [load("res://assets/sprites/textures/lantern_light/light_texture_1.png"), load("res://assets/sprites/textures/lantern_light/light_texture_2.png")]
+
+
 func _ready() -> void:
 	aim_circle.position = Vector2(1,0)
 	has_coin = true
+	light_change_timer.timeout.connect(_on_light_timer_timeout)
+	player_glow.texture = light_images[0]
+	light_change_timer.start(1.0) # Timer set to 1 sec
 
 func _process(delta: float) -> void:
 	aim_point_update()
@@ -38,6 +47,12 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	var direction := Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
+	
+	if Input.is_action_pressed("sprint"):
+		if SPEED == 50.0:
+			SPEED = SPEED * 1.5
+	else:
+		SPEED = 50.0
 	if direction:
 		velocity = (direction * SPEED)
 	else:
@@ -87,6 +102,14 @@ func aim_point_update() -> void:
 func animation_handler():
 	pass
 
+## SIGNAL HANDLERS
+
+func _on_light_timer_timeout() -> void:
+	if player_glow.texture == light_images[0]:
+		player_glow.texture = light_images[1]
+	else:
+		player_glow.texture = light_images[0]
+	light_change_timer.start(1.0)
 
 ## DEBUG
 func _draw() -> void:

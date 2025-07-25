@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://daf46daw0itbj"]
+[gd_scene load_steps=10 format=4 uid="uid://daf46daw0itbj"]
 
 [ext_resource type="PackedScene" uid="uid://bqus2snagbxwj" path="res://scenes/chars/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b3f3stkgl2sgq" path="res://scenes/chars/the_chaser.tscn" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://cwpfntu75caw6" path="res://assets/sprites/tilemaps/tilemap_1.aseprite" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://dj1reyris0xtv" path="res://scenes/interactables/lantern.tscn" id="4_lbhrr"]
 
 [sub_resource type="Environment" id="Environment_uwrxv"]
 background_mode = 1
@@ -38,9 +39,12 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(38, -22, 38, 39, -55, 3
 
 [node name="Game" type="Node2D"]
 
+[node name="lantern" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(-104, 11)
+
 [node name="TheChaser" parent="." node_paths=PackedStringArray("path_dest") instance=ExtResource("2_lnu2h")]
 position = Vector2(123, -16)
-path_dest = NodePath("../Player")
+path_dest = NodePath(".")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(-1, -1)

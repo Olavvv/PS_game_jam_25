@@ -32,7 +32,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if _current_state != _next_state:
 		_current_state = _next_state
-		print(COIN_STATES.keys()[_current_state])
 	
 	_state_property_handler()
 

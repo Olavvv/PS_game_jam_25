@@ -1,0 +1,10 @@
+[gd_resource type="AnimatedTexture" load_steps=3 format=3 uid="uid://cahp60fbih2cu"]
+
+[ext_resource type="Texture2D" uid="uid://bsa0mqusqpuhn" path="res://assets/sprites/textures/lantern_light/light_texture_1.png" id="1_ltpx6"]
+[ext_resource type="Texture2D" uid="uid://toq4s21mwfvw" path="res://assets/sprites/textures/lantern_light/light_texture_2.png" id="2_08uid"]
+
+[resource]
+frames = 2
+frame_0/texture = ExtResource("1_ltpx6")
+frame_1/texture = ExtResource("2_08uid")
+frame_1/duration = 1.0

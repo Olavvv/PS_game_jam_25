@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8a65rvi6pupi"]
+[gd_scene load_steps=4 format=3 uid="uid://c8a65rvi6pupi"]
 
 [ext_resource type="PackedScene" uid="uid://bqus2snagbxwj" path="res://scenes/chars/player.tscn" id="1_sb44j"]
 [ext_resource type="PackedScene" uid="uid://c81kn3jgikocb" path="res://scenes/interactables/lever.tscn" id="2_lsvi1"]
+[ext_resource type="PackedScene" uid="uid://dj1reyris0xtv" path="res://scenes/interactables/lantern.tscn" id="3_lsvi1"]
 
 [node name="LeverTesting" type="Node2D"]
 
@@ -12,3 +13,13 @@ zoom = Vector2(3.035, 3.035)
 
 [node name="Lever" parent="." instance=ExtResource("2_lsvi1")]
 position = Vector2(117, 0)
+
+[node name="lantern" parent="." instance=ExtResource("3_lsvi1")]
+position = Vector2(77, -54)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_scale = 5.135
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
