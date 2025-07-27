@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c87mr5ydv3tkt"]
+[gd_scene load_steps=5 format=3 uid="uid://mkmems5alsoj"]
 
-[ext_resource type="Script" uid="uid://cj8re3avvhnx1" path="res://scripts/ui_scripts/settings_menu.gd" id="1_jvuqp"]
-[ext_resource type="Theme" uid="uid://cwe3r1ifpv7us" path="res://assets/themes/ui_theme.tres" id="1_ysuc2"]
+[ext_resource type="Script" uid="uid://gejvxowk8uwg" path="res://scripts/ui_scripts/settings_menu_ingame.gd" id="1_hc6fi"]
+[ext_resource type="Theme" uid="uid://cwe3r1ifpv7us" path="res://assets/themes/ui_theme.tres" id="2_wscmi"]
 
 [sub_resource type="Gradient" id="Gradient_jg0sh"]
 colors = PackedColorArray(0, 0, 0.054902, 1, 0.493545, 0.493546, 0.493546, 1)
@@ -11,8 +11,8 @@ gradient = SubResource("Gradient_jg0sh")
 fill_to = Vector2(1, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
-process_mode = 3
-layer = 5
+layer = 10
+script = ExtResource("1_hc6fi")
 
 [node name="SettingsMenu" type="Control" parent="."]
 process_mode = 3
@@ -22,7 +22,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_jvuqp")
 
 [node name="MarginContainer" type="MarginContainer" parent="SettingsMenu"]
 custom_minimum_size = Vector2(600, 600)
@@ -52,7 +51,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(200, 45)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("1_ysuc2")
+theme = ExtResource("2_wscmi")
 theme_override_font_sizes/font_size = 32
 text = "Volume:"
 vertical_alignment = 1
@@ -68,7 +67,7 @@ size_flags_vertical = 4
 custom_minimum_size = Vector2(200, 45)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("1_ysuc2")
+theme = ExtResource("2_wscmi")
 theme_override_font_sizes/font_size = 28
 vertical_alignment = 1
 
@@ -78,12 +77,13 @@ size_flags_vertical = 10
 
 [node name="ReturnButton" type="Button" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
-theme = ExtResource("1_ysuc2")
-text = "Return"
+theme = ExtResource("2_wscmi")
+text = "Resume"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Background" type="CanvasLayer" parent="."]
+layer = 9
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="Background"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -92,5 +92,5 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_tgkk4")
 metadata/_edit_use_anchors_ = true
 
-[connection signal="value_changed" from="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/Volume" to="SettingsMenu" method="_on_volume_value_changed"]
-[connection signal="pressed" from="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer2/ReturnButton" to="SettingsMenu" method="_on_return_button_pressed"]
+[connection signal="value_changed" from="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="pressed" from="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer2/ReturnButton" to="." method="_on_return_button_pressed"]

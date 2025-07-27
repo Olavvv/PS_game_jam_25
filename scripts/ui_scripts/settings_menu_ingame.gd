@@ -1,8 +1,8 @@
-extends Control
+extends CanvasLayer
 
-@onready var volume_slider: HSlider = $MarginContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/Volume
-@onready var volume_prog_label: Label = $MarginContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/Label2
-@onready var return_button: Button = $MarginContainer/CenterContainer/VBoxContainer/MarginContainer2/ReturnButton
+@onready var volume_slider: HSlider = $SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/Volume
+@onready var volume_prog_label: Label = $SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/Label2
+@onready var return_button: Button = $SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer2/ReturnButton
 
 var main_menu := "res://scenes/ui_scenes/main_menu.tscn"
 var game_scene := "res://scenes/game.tscn"
@@ -19,7 +19,8 @@ func _ready() -> void:
 		volume_slider.value = config.get_value("audio", "master_volume", 0.0)
 
 func _on_return_button_pressed() -> void:
-	get_tree().change_scene_to_file(main_menu)
+	get_tree().paused = false
+	queue_free()
 
 func _on_volume_value_changed(value: float) -> void:
 	volume_prog_label.text = str(int(volume_slider.value))

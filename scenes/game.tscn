@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=4 uid="uid://daf46daw0itbj"]
+[gd_scene load_steps=12 format=4 uid="uid://daf46daw0itbj"]
 
+[ext_resource type="Script" uid="uid://ce541xbwd1rrx" path="res://scripts/game_manager.gd" id="1_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://bqus2snagbxwj" path="res://scenes/chars/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b3f3stkgl2sgq" path="res://scenes/chars/the_chaser.tscn" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://cwpfntu75caw6" path="res://assets/sprites/tilemaps/tilemap_1.aseprite" id="2_yqjtg"]
@@ -39,6 +40,8 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(
 outlines = Array[PackedVector2Array]([PackedVector2Array(38, -22, 38, 39, -55, 38, -53, 28, -86, 29, -85, 68, 74, 69, 67, -53, -84, -53, -82, -17, -285, -13, -283, -157, 277, -132, 282, 152, -288, 159, -285, -10, -83, -17, -85, 29, -81, -17, -55, -15, -53, -22), PackedVector2Array(-95, -16, -67, -15, -68, 32, -100, 34)])
 
 [node name="Game" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_u5sy4")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 unique_name_in_owner = true

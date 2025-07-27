@@ -11,9 +11,11 @@ gradient = SubResource("Gradient_jg0sh")
 fill_to = Vector2(1, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
+process_mode = 3
 layer = 5
 
 [node name="MainMenu" type="Control" parent="."]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
