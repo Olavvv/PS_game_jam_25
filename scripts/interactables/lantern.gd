@@ -4,11 +4,16 @@ extends StaticBody2D
 @onready var sparks: CPUParticles2D = $CPUParticles2D
 @onready var audioplayer: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var lantern_light: PointLight2D = $PointLight2D
-@onready var timer: Timer = $Timer
+@onready var dim_timer: Timer = $LightDimTimer
+@onready var light_texture_timer: Timer = $LightTextureTimer
 
 ## States
 var _current_active_state: bool = false
 var _next_active_state: bool = false
+
+## Light vars
+@onready var light_images:= [load("res://assets/sprites/textures/lantern_light/light_texture_1.png"), load("res://assets/sprites/textures/lantern_light/light_texture_2.png")]
+
 
 ## Other
 var tween: Tween
@@ -17,7 +22,10 @@ var tween: Tween
 func _ready() -> void:
 	if _current_active_state != _next_active_state:
 		_current_active_state = _next_active_state
-	timer.timeout.connect(_on_timer_timeout)
+	dim_timer.timeout.connect(_on_timer_timeout)
+	
+	lantern_light.texture = light_images[0]
+	light_texture_timer.start(1.0) # Timer set to 1 sec
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,7 +56,7 @@ func _on_coin_detect_area_area_entered(area: Area2D) -> void:
 
 func _on_tween_finished():
 	tween.kill()
-	timer.start(5.0)
+	dim_timer.start(5.0)
 
 func _on_timer_timeout():
 	print("DIMMING LIGHT")
@@ -63,3 +71,11 @@ func _on_timer_timeout():
 		.set_ease(Tween.EASE_OUT)
 	
 	_next_active_state = !_current_active_state
+
+
+func _on_light_texture_timer_timeout() -> void:
+	if lantern_light.texture == light_images[0]:
+		lantern_light.texture = light_images[1]
+	else:
+		lantern_light.texture = light_images[0]
+	light_texture_timer.start(1.0)

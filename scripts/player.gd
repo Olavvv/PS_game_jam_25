@@ -20,6 +20,7 @@ const max_aim_dist_mult = 150.0
 var coin: Area2D
 @onready var light_change_timer: Timer  = $Timer
 @onready var walking_sound_player: AudioStreamPlayer2D = $WalkingSound
+@onready var coin_textrect: TextureRect = $CanvasLayer/CoinUI/MarginContainer/TextureRect
 
 # Bool flags
 var has_coin: bool
@@ -47,6 +48,7 @@ func _process(delta: float) -> void:
 	coin_pickup()
 	queue_redraw()
 	animation_handler()
+	_ui_handler()
 	
 
 func _physics_process(delta: float) -> void:
@@ -124,7 +126,11 @@ func animation_handler():
 	else:
 		animation_sprite.play("idle")
 
-
+func _ui_handler():
+	if has_coin:
+		coin_textrect.visible = true
+	else:
+		coin_textrect.visible = false
 
 ## SIGNAL HANDLERS
 

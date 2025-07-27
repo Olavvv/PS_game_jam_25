@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dj1reyris0xtv"]
+[gd_scene load_steps=11 format=3 uid="uid://dj1reyris0xtv"]
 
 [ext_resource type="Script" uid="uid://c26vaoejevewd" path="res://scripts/interactables/lantern.gd" id="1_7p4cm"]
 [ext_resource type="AudioStream" uid="uid://coeky8lmwct3c" path="res://assets/audio/sfx/interactables/lantern/lantern_sound.wav" id="1_lnnlg"]
@@ -10,6 +10,14 @@ size = Vector2(8, 8)
 _limits = [0.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 24.7191), 0.0, -15.2118, 0, 0, Vector2(1, 2.24719), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Curve" id="Curve_p567b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.670455, 0.719101), -0.814276, -0.814276, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_p567b"]
+offsets = PackedFloat32Array(0.38, 0.7)
+colors = PackedColorArray(1, 0.357326, 0.290209, 1, 0.528751, 0.236433, 0.0277108, 1)
 
 [sub_resource type="Curve" id="Curve_7p4cm"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
@@ -43,7 +51,7 @@ volume_db = 5.0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
-lifetime = 0.2
+lifetime = 0.25
 one_shot = true
 explosiveness = 0.8
 direction = Vector2(0, 0)
@@ -51,14 +59,14 @@ spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 40.0
 initial_velocity_max = 50.0
-orbit_velocity_min = -1.0
-orbit_velocity_max = 1.0
 linear_accel_min = 20.2
 linear_accel_max = 34.34
 linear_accel_curve = SubResource("Curve_lnnlg")
 angle_min = 18.0
 angle_max = 18.0
+scale_amount_curve = SubResource("Curve_p567b")
 color = Color(0.844217, 0.334605, 0.0872285, 1)
+color_ramp = SubResource("Gradient_p567b")
 hue_variation_min = -0.19
 hue_variation_max = 0.13
 hue_variation_curve = SubResource("Curve_7p4cm")
@@ -74,12 +82,16 @@ debug_color = Color(0.317439, 0.497184, 0.984404, 0.42)
 [node name="PointLight2D" type="PointLight2D" parent="."]
 z_index = 5
 z_as_relative = false
+color = Color(0.745023, 0.50203, 0.222784, 1)
 energy = 0.2
 shadow_filter = 1
 texture = SubResource("GradientTexture2D_p567b")
 texture_scale = 0.2
 
-[node name="Timer" type="Timer" parent="."]
+[node name="LightDimTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="LightTextureTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="CoinDetectArea" to="." method="_on_coin_detect_area_area_entered"]
+[connection signal="timeout" from="LightTextureTimer" to="." method="_on_light_texture_timer_timeout"]

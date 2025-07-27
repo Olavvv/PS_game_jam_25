@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bqus2snagbxwj"]
+[gd_scene load_steps=15 format=4 uid="uid://bqus2snagbxwj"]
 
 [ext_resource type="Script" uid="uid://cmdb83wvdwcs" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://dr411y2g23a3t" path="res://assets/other/aim_circle.png" id="2_adwjk"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dt5ku7syqumt4" path="res://assets/audio/sfx/chars/player/main_walk1.wav" id="4_4yrg8"]
 [ext_resource type="AudioStream" uid="uid://b1kv6s3k5vedn" path="res://assets/audio/sfx/chars/player/main_walk2.wav" id="5_xv662"]
 [ext_resource type="AudioStream" uid="uid://bv7pir3dpnu8h" path="res://assets/audio/sfx/chars/player/main_walk3.wav" id="6_rqvr5"]
+[ext_resource type="Texture2D" uid="uid://dwhfbuv20usg" path="res://assets/placeholder/coin/coin_1.png" id="7_xv662"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_wyvug"]
 _data = PackedByteArray("AAADAAUAAAABAAAAIAAAACAAAADaAAAAUklGRtIAAABXRUJQVlA4TMUAAAAvH8AHEEegKAAZyJ8Sgmq1UmcfNY2kQNd9qKBHDQpRiAYjAZDQWcH/JyTQHbph/gMAAN3Cop9XNF30n+yC21rb1uSL1rx4yWECW0BnoPb3r+M13b93khdbIKL/E2B/ut0CgbJCW1iNOgIB3X0jIGskIHOcSVlG1pnAzJFs2Fe76XV6pRP4JM/KpUWmfcZOEy+cXpkqRpKmk6YvsxmkBQAEyqgFBW9d8Joj1bzX6pf3cyd57710AYBUsZZpweA7u1O8O8UfAgA=")
@@ -89,6 +90,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
 size = Vector2(14.5, 28.5)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4yrg8"]
+light_mode = 1
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_adwjk"]
 radius = 20.025
 
@@ -138,7 +142,7 @@ shape = SubResource("RectangleShape2D_3vyb7")
 
 [node name="AimCircle" type="Sprite2D" parent="."]
 light_mask = 0
-visibility_layer = 2
+material = SubResource("CanvasItemMaterial_4yrg8")
 position = Vector2(27, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_adwjk")
@@ -163,5 +167,34 @@ debug_color = Color(0.684983, 0.461799, 0.528465, 0.42)
 [node name="WalkingSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_wyvug")
 volume_db = -20.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CoinUI" type="Control" parent="CanvasLayer"]
+z_index = 5
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 0
+pivot_offset = Vector2(480, 270)
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/CoinUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.824
+anchor_right = 0.068
+anchor_bottom = 1.0
+offset_top = 0.039978
+offset_right = -0.280006
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CoinUI/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_xv662")
+expand_mode = 1
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

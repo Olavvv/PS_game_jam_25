@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://daf46daw0itbj"]
+[gd_scene load_steps=11 format=4 uid="uid://daf46daw0itbj"]
 
 [ext_resource type="PackedScene" uid="uid://bqus2snagbxwj" path="res://scenes/chars/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b3f3stkgl2sgq" path="res://scenes/chars/the_chaser.tscn" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://cwpfntu75caw6" path="res://assets/sprites/tilemaps/tilemap_1.aseprite" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://dj1reyris0xtv" path="res://scenes/interactables/lantern.tscn" id="4_lbhrr"]
+[ext_resource type="Script" uid="uid://conpnpaaub7sf" path="res://scripts/camera_2d.gd" id="6_p57ef"]
 
 [sub_resource type="Environment" id="Environment_uwrxv"]
 background_mode = 1
@@ -40,12 +41,23 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(38, -22, 38, 39, -55, 3
 [node name="Game" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
+unique_name_in_owner = true
 position = Vector2(-1, -1)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(2, 2)
-position_smoothing_speed = 50.0
-rotation_smoothing_enabled = true
+[node name="ColorRect" type="ColorRect" parent="Player"]
+z_index = -10
+offset_left = -666.0
+offset_top = -336.0
+offset_right = 639.0
+offset_bottom = 368.0
+color = Color(0.0253638, 0.0253638, 0.0253638, 1)
+
+[node name="TheChaser" parent="." node_paths=PackedStringArray("path_dest") instance=ExtResource("2_lnu2h")]
+position = Vector2(123, -16)
+path_dest = NodePath(".")
+
+[node name="lantern" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(-104, 11)
 
 [node name="Environment" type="Node" parent="."]
 
@@ -60,21 +72,18 @@ tile_set = SubResource("TileSet_lbhrr")
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Environment"]
 navigation_polygon = SubResource("NavigationPolygon_lnu2h")
 
-[node name="ColorRect" type="ColorRect" parent="Environment"]
-offset_left = -409.0
-offset_top = -213.0
-offset_right = 316.0
-offset_bottom = 219.0
-color = Color(0.0253638, 0.0253638, 0.0253638, 1)
-
 [node name="CanvasModulate" type="CanvasModulate" parent="Environment"]
 light_mask = 0
 visibility_layer = 0
+z_index = -10
+z_as_relative = false
 color = Color(0, 0, 0, 1)
 
-[node name="lantern" parent="." instance=ExtResource("4_lbhrr")]
-position = Vector2(-104, 11)
-
-[node name="TheChaser" parent="." node_paths=PackedStringArray("path_dest") instance=ExtResource("2_lnu2h")]
-position = Vector2(123, -16)
-path_dest = NodePath(".")
+[node name="Camera2D" type="Camera2D" parent="."]
+visibility_layer = 3
+z_index = 20
+z_as_relative = false
+zoom = Vector2(2, 2)
+position_smoothing_speed = 50.0
+rotation_smoothing_enabled = true
+script = ExtResource("6_p57ef")
