@@ -1,0 +1,31 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cwe3r1ifpv7us"]
+
+[ext_resource type="Texture2D" uid="uid://buskoex0wmdis" path="res://assets/sprites/particles/coin_shine.png" id="1_ftahe"]
+[ext_resource type="FontFile" uid="uid://b88tbgorltien" path="res://assets/fonts/joystix monospace.otf" id="1_ndjfm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndjfm"]
+bg_color = Color(0.537255, 0.603922, 0.717647, 0.215686)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftahe"]
+bg_color = Color(0.247059, 0.333333, 0.32549, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ndjfm"]
+
+[resource]
+default_font = ExtResource("1_ndjfm")
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 36
+Button/fonts/font = ExtResource("1_ndjfm")
+Button/icons/icon = ExtResource("1_ftahe")
+Button/styles/hover = SubResource("StyleBoxFlat_ndjfm")
+Button/styles/normal = SubResource("StyleBoxFlat_ftahe")
+Label/colors/font_color = Color(0.247405, 0.334841, 0.325931, 1)
+Label/colors/font_outline_color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0.701961)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 10
+Label/font_sizes/font_size = 136
+Label/styles/normal = SubResource("StyleBoxEmpty_ndjfm")

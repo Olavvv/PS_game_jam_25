@@ -1,34 +1,93 @@
-[gd_scene load_steps=2 format=3 uid="uid://dm6re0y16pfvy"]
+[gd_scene load_steps=5 format=3 uid="uid://c87mr5ydv3tkt"]
 
-[ext_resource type="FontFile" uid="uid://b88tbgorltien" path="res://assets/fonts/joystix monospace.otf" id="1_ysuc2"]
+[ext_resource type="Script" uid="uid://cj8re3avvhnx1" path="res://scripts/ui_scripts/settings_menu.gd" id="1_jvuqp"]
+[ext_resource type="Theme" uid="uid://cwe3r1ifpv7us" path="res://assets/themes/ui_theme.tres" id="1_ysuc2"]
 
-[node name="SettingsMenu" type="Control"]
+[sub_resource type="Gradient" id="Gradient_jg0sh"]
+colors = PackedColorArray(0, 0, 0.054902, 1, 0.493545, 0.493546, 0.493546, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tgkk4"]
+gradient = SubResource("Gradient_jg0sh")
+fill_to = Vector2(1, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 5
+
+[node name="SettingsMenu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jvuqp")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="SettingsMenu"]
+custom_minimum_size = Vector2(600, 600)
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -188.0
-offset_right = 188.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="SettingsMenu/MarginContainer"]
 layout_mode = 2
 
-[node name="FullscreenButton" type="CheckButton" parent="CenterContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenu/MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_ysuc2")
-theme_override_font_sizes/font_size = 36
-text = "Fullscreen:"
 
-[node name="VolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 150)
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_ysuc2")
+theme_override_font_sizes/font_size = 32
+text = "Volume:"
+vertical_alignment = 1
+
+[node name="Volume" type="HSlider" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label2" type="Label" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_ysuc2")
+theme_override_font_sizes/font_size = 28
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="ReturnButton" type="Button" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme = ExtResource("1_ysuc2")
+text = "Return"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_tgkk4")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="value_changed" from="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/Volume" to="SettingsMenu" method="_on_volume_value_changed"]
+[connection signal="pressed" from="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer2/ReturnButton" to="SettingsMenu" method="_on_return_button_pressed"]
