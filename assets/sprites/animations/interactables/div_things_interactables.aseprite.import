@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c2eahjbyvetvt"
+path="res://.godot/imported/div_things_interactables.aseprite-bc17fef73618043b2a4e013af638c62a.res"
+
+[deps]
+
+source_file="res://assets/sprites/animations/interactables/div_things_interactables.aseprite"
+dest_files=["res://.godot/imported/div_things_interactables.aseprite-bc17fef73618043b2a4e013af638c62a.res"]
+
+[params]
+
