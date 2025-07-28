@@ -1,5 +1,10 @@
 extends Node
 
+## Nodes
+@onready var player: CharacterBody2D = %Player
+@onready var coin_ui: TextureRect = $CanvasLayer/CoinUI/MarginContainer/TextureRect
+
+## Settings and config
 var user_config_path := "res://user/user_settings.cfg"
 var ingame_settings_menu: PackedScene = load("res://scenes/ui_scenes/settings_menu_ingame.tscn")
 var settings_scene
@@ -14,7 +19,15 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	pass
+	_coin_ui_handler()
+
+
+func _coin_ui_handler():
+	if player.has_coin:
+		coin_ui.visible = true
+	else:
+		coin_ui.visible = false
+
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("open_settings"):

@@ -48,6 +48,7 @@ animations = [{
 }]
 
 [node name="Area2D" type="Area2D" groups=["coin"]]
+process_mode = 1
 z_index = 5
 z_as_relative = false
 collision_layer = 2

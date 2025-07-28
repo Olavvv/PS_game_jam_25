@@ -47,6 +47,9 @@ script = ExtResource("1_u5sy4")
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 unique_name_in_owner = true
 position = Vector2(-1, -1)
+SPEED = 50.0
+DECEL_SPEED = 50.0
+AIM_CIRCLE_RADIUS = 30.0
 
 [node name="ColorRect" type="ColorRect" parent="Player"]
 z_index = -10

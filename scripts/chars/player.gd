@@ -20,7 +20,6 @@ const max_aim_dist_mult = 150.0
 var coin: Area2D
 @onready var light_change_timer: Timer  = $Timer
 @onready var walking_sound_player: AudioStreamPlayer2D = $WalkingSound
-@onready var coin_textrect: TextureRect = $CanvasLayer/CoinUI/MarginContainer/TextureRect
 
 # Bool flags
 var has_coin: bool
@@ -48,7 +47,6 @@ func _process(delta: float) -> void:
 	coin_pickup()
 	queue_redraw()
 	animation_handler()
-	_ui_handler()
 	
 
 func _physics_process(delta: float) -> void:
@@ -115,22 +113,17 @@ func animation_handler():
 	
 	animation_sprite.flip_h = false # Default statement
 	if velocity.x > 0:
-		animation_sprite.play("move_sideways")
-	elif velocity.x < 0:
-		animation_sprite.play("move_sideways")
 		animation_sprite.flip_h = true
+		animation_sprite.play("walk_left")
+	elif velocity.x < 0:
+		animation_sprite.play("walk_left")
 	elif velocity.y > 0:
-		animation_sprite.play("move_down")
+		animation_sprite.play("walk_down")
 	elif velocity.y < 0:
-		animation_sprite.play("move_up")
+		animation_sprite.play("walk_up")
 	else:
 		animation_sprite.play("idle")
 
-func _ui_handler():
-	if has_coin:
-		coin_textrect.visible = true
-	else:
-		coin_textrect.visible = false
 
 ## SIGNAL HANDLERS
 
@@ -145,9 +138,10 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 	if animation_sprite.animation == "idle":
 		return
 		
-	if ((animation_sprite.frame % 2) == 0) and (animation_sprite.frame != 0):
+	if (animation_sprite.frame == 3) or (animation_sprite.frame == 7):
 		print(animation_sprite.frame)
 		walking_sound_player.play()
+
 
 ## DEBUG
 func _draw() -> void:
