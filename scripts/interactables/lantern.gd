@@ -12,7 +12,7 @@ var _current_active_state: bool = false
 var _next_active_state: bool = false
 
 ## Light vars
-@onready var light_images:= [load("res://assets/sprites/textures/lantern_light/light_texture_1.png"), load("res://assets/sprites/textures/lantern_light/light_texture_2.png")]
+@onready var light_images:= [preload("res://assets/sprites/textures/lantern_light/light_texture_1.png"), preload("res://assets/sprites/textures/lantern_light/light_texture_2.png")]
 
 
 ## Other

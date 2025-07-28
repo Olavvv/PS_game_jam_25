@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://mkmems5alsoj"]
+[gd_scene load_steps=6 format=3 uid="uid://mkmems5alsoj"]
 
 [ext_resource type="Script" uid="uid://gejvxowk8uwg" path="res://scripts/ui_scripts/settings_menu_ingame.gd" id="1_hc6fi"]
 [ext_resource type="Theme" uid="uid://cwe3r1ifpv7us" path="res://assets/themes/ui_theme.tres" id="2_wscmi"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jvuqp"]
 
 [sub_resource type="Gradient" id="Gradient_jg0sh"]
 colors = PackedColorArray(0, 0, 0.054902, 1, 0.493545, 0.493546, 0.493546, 1)
@@ -40,15 +42,14 @@ custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(200, 150)
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 45)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_wscmi")
@@ -58,27 +59,81 @@ vertical_alignment = 1
 
 [node name="Volume" type="HSlider" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 process_mode = 3
-custom_minimum_size = Vector2(300, 25)
+custom_minimum_size = Vector2(275, 25)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
 size_flags_vertical = 4
+theme = ExtResource("2_wscmi")
 
 [node name="Label2" type="Label" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 45)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_wscmi")
 theme_override_font_sizes/font_size = 28
+text = "0"
 vertical_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
-[node name="ReturnButton" type="Button" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer3/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_wscmi")
+theme_override_font_sizes/font_size = 32
+text = "Resolution: "
+
+[node name="Resolution" type="OptionButton" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_wscmi")
+theme_override_font_sizes/font_size = 16
+theme_override_icons/icon = SubResource("CanvasTexture_jvuqp")
+
+[node name="MarginContainer4" type="MarginContainer" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer4/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_wscmi")
+theme_override_icons/icon = SubResource("CanvasTexture_jvuqp")
+text = "Fullscreen: "
+
+[node name="MarginContainer5" type="MarginContainer" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="ReturnButton" type="Button" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer5"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("2_wscmi")
 text = "Resume"
+
+[node name="MarginContainer2" type="MarginContainer" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="MainMenuButton" type="Button" parent="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("2_wscmi")
+text = "Exit Game"
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = 9
@@ -93,4 +148,7 @@ texture = SubResource("GradientTexture2D_tgkk4")
 metadata/_edit_use_anchors_ = true
 
 [connection signal="value_changed" from="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/Volume" to="." method="_on_volume_value_changed"]
-[connection signal="pressed" from="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer2/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="item_selected" from="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer3/HBoxContainer/Resolution" to="." method="_on_resolution_item_selected"]
+[connection signal="toggled" from="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer4/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer5/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="SettingsMenu/MarginContainer/CenterContainer/VBoxContainer/MarginContainer2/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

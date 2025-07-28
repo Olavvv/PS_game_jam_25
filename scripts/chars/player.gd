@@ -22,7 +22,7 @@ var coin: Area2D
 @onready var walking_sound_player: AudioStreamPlayer2D = $WalkingSound
 
 # Bool flags
-var has_coin: bool
+var has_coin: bool = true
 var is_sprinting: bool = false
 
 # Aiming vars
@@ -31,7 +31,7 @@ var aim_strength := 0.5
 var toss_location := Vector2(0,0)
 
 ## Light vars
-@onready var light_images:= [load("res://assets/sprites/textures/lantern_light/light_texture_1.png"), load("res://assets/sprites/textures/lantern_light/light_texture_2.png")]
+@onready var light_images:= [preload("res://assets/sprites/textures/lantern_light/light_texture_1.png"), preload("res://assets/sprites/textures/lantern_light/light_texture_2.png")]
 
 
 func _ready() -> void:
