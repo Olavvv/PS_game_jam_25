@@ -45,9 +45,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	aim_point_update()
 	coin_pickup()
-	queue_redraw()
 	animation_handler()
 	
+	## DRAW DEBUG STUFF
+	#queue_redraw()
 
 func _physics_process(delta: float) -> void:
 	var direction := Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()

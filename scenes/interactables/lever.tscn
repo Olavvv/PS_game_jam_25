@@ -1,35 +1,35 @@
 [gd_scene load_steps=10 format=3 uid="uid://c81kn3jgikocb"]
 
-[ext_resource type="Texture2D" uid="uid://c37nkifuyiq6x" path="res://assets/sprites/animations/interactables/lever.png" id="1_g73kl"]
 [ext_resource type="Script" uid="uid://6ni3kk3mcbeo" path="res://scripts/interactables/lever.gd" id="1_kv8us"]
+[ext_resource type="Texture2D" uid="uid://t772l3siam18" path="res://assets/sprites/animations/interactables/lever/lever_new.png" id="2_kv8us"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ka50h"]
-size = Vector2(8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kv8us"]
-atlas = ExtResource("1_g73kl")
-region = Rect2(16, 0, 16, 16)
+size = Vector2(8, 2)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cyoba"]
-atlas = ExtResource("1_g73kl")
-region = Rect2(0, 0, 16, 16)
+atlas = ExtResource("2_kv8us")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yuqvr"]
-atlas = ExtResource("1_g73kl")
+atlas = ExtResource("2_kv8us")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w0fk0"]
-atlas = ExtResource("1_g73kl")
+atlas = ExtResource("2_kv8us")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_noju5"]
+atlas = ExtResource("2_kv8us")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ka50h"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kv8us")
+"texture": SubResource("AtlasTexture_cyoba")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cyoba")
+"texture": SubResource("AtlasTexture_yuqvr")
 }],
 "loop": false,
 "name": &"activate",
@@ -37,10 +37,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yuqvr")
+"texture": SubResource("AtlasTexture_w0fk0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w0fk0")
+"texture": SubResource("AtlasTexture_noju5")
 }],
 "loop": false,
 "name": &"de_activate",
@@ -51,14 +51,19 @@ animations = [{
 size = Vector2(8, 8)
 
 [node name="Lever" type="StaticBody2D"]
+z_index = 5
+z_as_relative = false
+y_sort_enabled = true
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_kv8us")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_ka50h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_ka50h")
 animation = &"activate"
 speed_scale = 2.0

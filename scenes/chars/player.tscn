@@ -255,7 +255,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
-size = Vector2(14.5, 28.5)
+size = Vector2(14.5, 14.25)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4yrg8"]
 light_mode = 1
@@ -272,7 +272,8 @@ stream_2/stream = ExtResource("6_rqvr5")
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
 z_as_relative = false
-collision_mask = 4
+y_sort_enabled = true
+collision_mask = 12
 motion_mode = 1
 script = ExtResource("1_3vyb7")
 
@@ -304,7 +305,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "aa29ec32741e606644fae0ae1d509741"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 9.125)
 shape = SubResource("RectangleShape2D_3vyb7")
 
 [node name="AimCircle" type="Sprite2D" parent="."]

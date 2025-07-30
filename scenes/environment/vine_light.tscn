@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmj3pwp23jawk"]
+
+[sub_resource type="Gradient" id="Gradient_3iq7m"]
+offsets = PackedFloat32Array(0, 0.207792, 0.415584, 0.707792)
+colors = PackedColorArray(0.698039, 1, 1, 1, 0, 0.451805, 0.456191, 1, 0, 0.190511, 0.192636, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ulpct"]
+gradient = SubResource("Gradient_3iq7m")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[node name="VineLight" type="PointLight2D"]
+texture = SubResource("GradientTexture2D_ulpct")

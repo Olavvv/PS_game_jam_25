@@ -3,6 +3,7 @@ extends Node
 ## Nodes
 @onready var player: CharacterBody2D = %Player
 @onready var coin_ui: TextureRect = $CanvasLayer/CoinUI/MarginContainer/TextureRect
+@onready var heart_ui: AnimatedSprite2D = %HeartUI
 
 ## Settings and config
 var ingame_settings_menu: PackedScene = load("res://scenes/ui_scenes/settings_menu_ingame.tscn")

@@ -38,6 +38,8 @@ fill_to = Vector2(0.85, 0.85)
 
 [node name="lantern" type="StaticBody2D"]
 z_index = 5
+z_as_relative = false
+y_sort_enabled = true
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_7p4cm")
