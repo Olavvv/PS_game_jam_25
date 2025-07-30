@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+@onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var walk_sound_player: AudioStreamPlayer2D = $WalkSoundPlayer
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
@@ -15,7 +15,7 @@ enum CHASER_STATES {STUNNED, IDLE, WANDER, CHASING}
 var _current_state : CHASER_STATES = CHASER_STATES.IDLE
 var _next_state: CHASER_STATES = _current_state
 
-var movement_speed: float = 50.0
+var movement_speed: float = 70.0
 var idle_timer_time: float = 3.0
 var movement_target_position: Vector2
 var prev_movement_target_position: Vector2
@@ -42,9 +42,11 @@ func _ready():
 
 func _process(delta: float) -> void:
 	if stunned:
+		collision.disabled = true
 		if !stun_timer.is_stopped():
 			_next_state = CHASER_STATES.STUNNED
 		else:
+			collision.disabled = false
 			stunned = false
 			_next_state = CHASER_STATES.WANDER
 	
@@ -68,7 +70,7 @@ func _process(delta: float) -> void:
 		CHASER_STATES.CHASING:
 			if position.distance_to(path_dest.position) > 230.0:
 				_next_state = CHASER_STATES.IDLE
-			movement_speed = 75.0
+			movement_speed = 110.0
 			_set_movement_target(path_dest.position)
 		
 	_audio_anim_matcher()
@@ -99,8 +101,15 @@ func _audio_anim_matcher():
 	if velocity.x > 0:
 		animation.flip_h = true
 	
-	#if velocity.length() > 0.5:
-		#walk_sound_player.play()
+	if velocity.length() > 0.5:
+		animation.play("Walk")
+	else:
+		animation.play("Idle")
+	
+	if _current_state == CHASER_STATES.CHASING:
+		animation.speed_scale = 3.5
+	else: 
+		animation.speed_scale = 1.0
 
 
 func _on_idle_timer_timeout() -> void:
@@ -156,3 +165,11 @@ func _custom_sort_ratio_dist(a: Node , b: Node) -> bool:
 	var dist_from_b_to_player: float = b.position.distance_to(path_dest.position)
 	
 	return (dist_from_a_to_player < dist_from_b_to_player)
+
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if !animation.animation == "Walk":
+		return
+	
+	if (animation.frame == 1) or (animation.frame == 3):
+		walk_sound_player.play() 

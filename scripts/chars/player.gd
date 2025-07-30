@@ -79,14 +79,17 @@ func coin_pickup() -> void:
 
 
 func aim_point_update() -> void:
-	var aim_direction = get_local_mouse_position().normalized()
+	var root = get_tree().get_root()
+	var bars = (DisplayServer.screen_get_size() - root.size) / 2
+	var corrected_mouse_pos = get_global_mouse_position() - Vector2(bars)
+	var aim_direction = to_local(corrected_mouse_pos).normalized()
 	var aim_point = (aim_direction * AIM_CIRCLE_RADIUS)
 	
 	if not has_coin and Input.is_action_pressed("build_strength"):
 		print("YOU HAVE NO COIN TO SHOOT")
 	
 	elif Input.is_action_pressed("build_strength") and has_coin:
-		aim_point = aim_point.move_toward(get_local_mouse_position().normalized() * max_aim_dist_mult, aim_strength)
+		aim_point = aim_point.move_toward(to_local(corrected_mouse_pos).normalized() * max_aim_dist_mult, aim_strength)
 		toss_location = aim_point
 		aim_strength += 0.2
 	

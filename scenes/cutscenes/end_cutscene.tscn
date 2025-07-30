@@ -387,7 +387,6 @@ tile_map_data = PackedByteArray("AADn/+z/AQACAAAAAADn/+3/AQACAAAAAADn/+7/AQACAAA
 tile_set = SubResource("TileSet_f8w8e")
 
 [node name="SisterTalk" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0)
 z_index = 3
 offset_left = -41.0
 offset_top = -143.0
@@ -399,7 +398,7 @@ text = "WE DEAD BRUH"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-7, -122)
-energy = 0.5
+energy = 0.4
 texture = SubResource("GradientTexture2D_0chwv")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]

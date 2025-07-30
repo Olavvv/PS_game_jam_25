@@ -2,18 +2,18 @@ extends Node
 
 ## Nodes
 @onready var player: CharacterBody2D = %Player
-@onready var coin_ui: TextureRect = $CanvasLayer/CoinUI/MarginContainer/TextureRect
+@onready var coin_ui: TextureRect = %CoinUI
 @onready var heart_ui: AnimatedSprite2D = %HeartUI
-@onready var event_flags: Array[Area2D] = [$ChaserEvent/EventFlag, $ChaserEvent/EventFlag2, $ChaserEvent/EventFlag3]
+@onready var event_flags: Array[Area2D] = [%EventFlag, %EventFlag2, %EventFlag3]
 
 var chaser_scene: PackedScene = load("res://scenes/chars/the_chaser.tscn")
 var chaser = null
 var chaser_spawned: bool = false
-@onready var start_marker: Marker2D = $WanderPositions/StartMarker
+@onready var start_marker: Marker2D = %StartMarker
 
 ## GAME STATES
 @onready var exit_door: StaticBody2D = $ExitDoor
-@onready var levers: Array[Node] = [$Levers/LeverBlue, $Levers/LeverYellow, $Levers/LeverRed]
+@onready var levers: Array[Node] = [%LeverBlue, %LeverYellow, %LeverRed]
 var light_states: Dictionary[String, bool] = {"blue": false, "yellow": false, "red": false}
 var lever_states: Dictionary[String, bool] = {"blue": false, "yellow": false, "red": false}
 
@@ -103,4 +103,4 @@ func _on_red_lever_activate():
 	light_states["red"] = true
 
 func _on_player_death():
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://scenes/cutscenes/death_cutscene.tscn")

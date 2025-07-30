@@ -280,7 +280,6 @@ fill_to = Vector2(1, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r04vw"]
 radius = 6.0
-height = 26.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 5
@@ -341,7 +340,7 @@ debug_color = Color(0.684983, 0.461799, 0.528465, 0.42)
 [node name="WalkingSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, -9)
 stream = SubResource("AudioStreamRandomizer_wyvug")
-volume_db = -30.0
+volume_db = -50.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -9)
