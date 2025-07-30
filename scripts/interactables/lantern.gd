@@ -5,14 +5,13 @@ extends StaticBody2D
 @onready var audioplayer: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var lantern_light: PointLight2D = $PointLight2D
 @onready var dim_timer: Timer = $LightDimTimer
-@onready var light_texture_timer: Timer = $LightTextureTimer
+@onready var light_animation: AnimatedSprite2D = $AnimatedSprite2D
 
 ## States
 var _current_active_state: bool = false
 var _next_active_state: bool = false
 
-## Light vars
-@onready var light_images:= [preload("res://assets/sprites/textures/lantern_light/light_texture_1.png"), preload("res://assets/sprites/textures/lantern_light/light_texture_2.png")]
+
 
 
 ## Other
@@ -23,9 +22,6 @@ func _ready() -> void:
 	if _current_active_state != _next_active_state:
 		_current_active_state = _next_active_state
 	dim_timer.timeout.connect(_on_timer_timeout)
-	
-	lantern_light.texture = light_images[0]
-	light_texture_timer.start(1.0) # Timer set to 1 sec
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,9 +32,9 @@ func _process(delta: float) -> void:
 func _on_coin_detect_area_area_entered(area: Area2D) -> void:
 	if not area.is_in_group("coin"):
 		return
-	print("HIT LANTERN")
 	sparks.emitting = true
 	audioplayer.play()
+	light_animation.play("hit")
 	
 	if tween:
 		tween.kill()
@@ -59,8 +55,6 @@ func _on_tween_finished():
 	dim_timer.start(5.0)
 
 func _on_timer_timeout():
-	print("DIMMING LIGHT")
-	
 	tween = create_tween()
 	tween.tween_property(lantern_light, "texture_scale", 0.2, 1.0)\
 		.set_trans(Tween.TRANS_QUAD)\
@@ -70,12 +64,11 @@ func _on_timer_timeout():
 		.set_trans(Tween.TRANS_QUAD)\
 		.set_ease(Tween.EASE_OUT)
 	
+	light_animation.play("dim")
 	_next_active_state = !_current_active_state
 
 
-func _on_light_texture_timer_timeout() -> void:
-	if lantern_light.texture == light_images[0]:
-		lantern_light.texture = light_images[1]
-	else:
-		lantern_light.texture = light_images[0]
-	light_texture_timer.start(1.0)
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if light_animation.animation == "hit":
+		light_animation.play("light_on")

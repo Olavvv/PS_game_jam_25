@@ -1,8 +1,7 @@
-[gd_scene load_steps=41 format=4 uid="uid://bqus2snagbxwj"]
+[gd_scene load_steps=43 format=4 uid="uid://bqus2snagbxwj"]
 
 [ext_resource type="Script" uid="uid://cmdb83wvdwcs" path="res://scripts/chars/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://dr411y2g23a3t" path="res://assets/other/aim_circle.png" id="2_adwjk"]
-[ext_resource type="Texture2D" uid="uid://bsa0mqusqpuhn" path="res://assets/sprites/textures/lantern_light/light_texture_1.png" id="3_wyvug"]
 [ext_resource type="AudioStream" uid="uid://dt5ku7syqumt4" path="res://assets/audio/sfx/chars/player/main_walk1.wav" id="4_4yrg8"]
 [ext_resource type="AudioStream" uid="uid://b1kv6s3k5vedn" path="res://assets/audio/sfx/chars/player/main_walk2.wav" id="5_xv662"]
 [ext_resource type="AudioStream" uid="uid://bv7pir3dpnu8h" path="res://assets/audio/sfx/chars/player/main_walk3.wav" id="6_rqvr5"]
@@ -269,18 +268,33 @@ stream_0/stream = ExtResource("4_4yrg8")
 stream_1/stream = ExtResource("5_xv662")
 stream_2/stream = ExtResource("6_rqvr5")
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="Gradient" id="Gradient_r04vw"]
+offsets = PackedFloat32Array(0, 0.207792, 0.415584, 0.707792)
+colors = PackedColorArray(0.964706, 0.882353, 0.678431, 1, 0.644531, 0.58951, 0.453268, 1, 0.351563, 0.321551, 0.247237, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4yrg8"]
+gradient = SubResource("Gradient_r04vw")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r04vw"]
+radius = 6.0
+height = 26.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 5
 z_as_relative = false
 y_sort_enabled = true
-collision_mask = 12
+collision_mask = 28
 motion_mode = 1
 script = ExtResource("1_3vyb7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_55p1d")
-animation = &"idle"
+animation = &"walk_up"
 autoplay = "idle"
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
@@ -305,24 +319,18 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "aa29ec32741e606644fae0ae1d509741"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9.125)
+position = Vector2(0, 0.125)
 shape = SubResource("RectangleShape2D_3vyb7")
 
 [node name="AimCircle" type="Sprite2D" parent="."]
 light_mask = 0
 material = SubResource("CanvasItemMaterial_4yrg8")
-position = Vector2(27, 0)
+position = Vector2(27, -9)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_adwjk")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.745023, 0.50203, 0.222784, 1)
-shadow_enabled = true
-shadow_filter = 1
-texture = ExtResource("3_wyvug")
-texture_scale = 1.5
-
 [node name="PickUpRange" type="Area2D" parent="."]
+position = Vector2(0, -9)
 collision_layer = 0
 collision_mask = 2
 
@@ -330,10 +338,25 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_adwjk")
 debug_color = Color(0.684983, 0.461799, 0.528465, 0.42)
 
-[node name="Timer" type="Timer" parent="."]
-
 [node name="WalkingSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -9)
 stream = SubResource("AudioStreamRandomizer_wyvug")
 volume_db = -30.0
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -9)
+texture = SubResource("GradientTexture2D_4yrg8")
+texture_scale = 2.0
+
+[node name="DeathCircle" type="Area2D" parent="."]
+position = Vector2(0, -9)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathCircle"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_r04vw")
+debug_color = Color(0.7, 0, 0.0744516, 0.42)
+
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
+[connection signal="body_entered" from="DeathCircle" to="." method="_on_death_circle_body_entered"]

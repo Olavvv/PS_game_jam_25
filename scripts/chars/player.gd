@@ -4,21 +4,24 @@ enum MOVEMENT_STATES {IDLE, IDLE_UP, WALKING, WALKING_UP}
 
 const max_aim_dist_mult = 150.0
 
-## Variables
+## Signals
 
+signal died
+
+## Variables
 # Eported vars
 @export var SPEED := 50.0
 @export var DECEL_SPEED := 50.0
 @export var AIM_CIRCLE_RADIUS := 30.0
 
 # Nodes
+@onready var death_circle: Area2D = $DeathCircle
 @onready var aim_circle: Sprite2D = $AimCircle
 @onready var animation_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var pick_up_range: Area2D = $PickUpRange
 @onready var player_glow: PointLight2D = $PointLight2D
 @onready var coin_scene := load("res://scenes/items/coin.tscn")
 var coin: Area2D
-@onready var light_change_timer: Timer  = $Timer
 @onready var walking_sound_player: AudioStreamPlayer2D = $WalkingSound
 
 # Bool flags
@@ -30,17 +33,9 @@ var aim_direction: Vector2
 var aim_strength := 0.5
 var toss_location := Vector2(0,0)
 
-## Light vars
-@onready var light_images:= [preload("res://assets/sprites/textures/lantern_light/light_texture_1.png"), preload("res://assets/sprites/textures/lantern_light/light_texture_2.png")]
-
-
 func _ready() -> void:
 	aim_circle.position = Vector2(1,0)
-	
 	has_coin = true
-	light_change_timer.timeout.connect(_on_light_timer_timeout)
-	player_glow.texture = light_images[0]
-	light_change_timer.start(1.0) # Timer set to 1 sec
 
 func _process(delta: float) -> void:
 	aim_point_update()
@@ -56,7 +51,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("sprint"):
 		is_sprinting = true
 		if SPEED == 50.0:
-			SPEED = SPEED * 1.5
+			SPEED = SPEED * 2.0
 	else:
 		is_sprinting = false
 		SPEED = 50.0
@@ -108,7 +103,7 @@ func aim_point_update() -> void:
 
 func animation_handler():
 	if is_sprinting:
-		animation_sprite.speed_scale = 1.5
+		animation_sprite.speed_scale = 2.0
 	else:
 		animation_sprite.speed_scale = 1.0
 	
@@ -126,21 +121,12 @@ func animation_handler():
 		animation_sprite.play("idle")
 
 
-## SIGNAL HANDLERS
-
-func _on_light_timer_timeout() -> void:
-	if player_glow.texture == light_images[0]:
-		player_glow.texture = light_images[1]
-	else:
-		player_glow.texture = light_images[0]
-	light_change_timer.start(1.0)
 
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if animation_sprite.animation == "idle":
 		return
 		
 	if (animation_sprite.frame == 3) or (animation_sprite.frame == 7):
-		print(animation_sprite.frame)
 		walking_sound_player.play()
 
 
@@ -148,3 +134,13 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 func _draw() -> void:
 	if toss_location:
 		draw_circle(toss_location, 2.0, Color.RED)
+
+
+func _on_death_circle_body_entered(body: Node2D) -> void:
+	if !body.is_in_group("chaser"):
+		return
+	died.emit()
+
+## EXTERNAL METHODS
+func play_walk_up():
+	animation_sprite.play("walk_up")

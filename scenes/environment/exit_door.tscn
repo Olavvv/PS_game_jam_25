@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://ddekpy2t8iu4x"]
+
+[ext_resource type="Texture2D" uid="uid://d0vl7v2hmj2gf" path="res://assets/sprites/static/door.png" id="1_6m0as"]
+[ext_resource type="Script" uid="uid://d10s3whkan6u1" path="res://scripts/environment/exit_door.gd" id="1_v0mm0"]
+[ext_resource type="Texture2D" uid="uid://cuyex0gl783dh" path="res://assets/sprites/static/door_light_blue.png" id="2_3p4i3"]
+[ext_resource type="Texture2D" uid="uid://dwebla2mjx6w" path="res://assets/sprites/static/door_light_yellow.png" id="3_v0mm0"]
+[ext_resource type="Texture2D" uid="uid://cd51q50agp3u" path="res://assets/sprites/static/door_light_red.png" id="4_y2dvy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sgsfx"]
+size = Vector2(44, 27)
+
+[sub_resource type="Gradient" id="Gradient_y4ugl"]
+offsets = PackedFloat32Array(0, 0.207792, 0.415584, 0.707792)
+colors = PackedColorArray(0.964706, 0.882353, 0.678431, 1, 0.644531, 0.58951, 0.453268, 1, 0.351563, 0.321551, 0.247237, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ulpct"]
+gradient = SubResource("Gradient_y4ugl")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0mm0"]
+size = Vector2(44, 18.5)
+
+[node name="ExitDoor" type="StaticBody2D"]
+z_index = 5
+z_as_relative = false
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("1_v0mm0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_sgsfx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6m0as")
+
+[node name="DoorLights" type="Node2D" parent="."]
+z_index = 1
+
+[node name="DoorLightBlue" type="Sprite2D" parent="DoorLights" groups=["door_light"]]
+z_index = 5
+z_as_relative = false
+position = Vector2(-10, 7)
+texture = ExtResource("2_3p4i3")
+
+[node name="LightBlue" type="PointLight2D" parent="DoorLights/DoorLightBlue"]
+z_index = 1
+texture = SubResource("GradientTexture2D_ulpct")
+
+[node name="DoorLightYellow" type="Sprite2D" parent="DoorLights" groups=["door_light"]]
+z_index = 5
+z_as_relative = false
+position = Vector2(0, -7)
+texture = ExtResource("3_v0mm0")
+
+[node name="LightYellow" type="PointLight2D" parent="DoorLights/DoorLightYellow"]
+z_index = 5
+z_as_relative = false
+texture = SubResource("GradientTexture2D_ulpct")
+
+[node name="DoorLightRed" type="Sprite2D" parent="DoorLights" groups=["door_light"]]
+z_index = 5
+z_as_relative = false
+position = Vector2(9, 7)
+texture = ExtResource("4_y2dvy")
+
+[node name="LightRed" type="PointLight2D" parent="DoorLights/DoorLightRed"]
+z_index = 5
+z_as_relative = false
+texture = SubResource("GradientTexture2D_ulpct")
+
+[node name="ExitZone" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitZone"]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_v0mm0")
+debug_color = Color(0.182143, 0.0687205, 0.7, 0.42)
+
+[connection signal="body_entered" from="ExitZone" to="." method="_on_exit_zone_body_entered"]

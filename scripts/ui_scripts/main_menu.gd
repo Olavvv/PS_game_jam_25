@@ -1,8 +1,8 @@
 extends Control
 
-@onready var start_button: Button = $BoxContainer/VBoxContainer/CenterContainer/VBoxContainer/MarginContainer/Start
-@onready var settings_button: Button = $BoxContainer/VBoxContainer/CenterContainer/VBoxContainer/MarginContainer2/Settings
-@onready var exit_button: Button = $BoxContainer/VBoxContainer/CenterContainer/VBoxContainer/MarginContainer3/Exit
+@onready var start_button: Button = %Start
+@onready var settings_button: Button = %Settings
+@onready var exit_button: Button = %Exit
 
 var main_game := "res://scenes/game.tscn"
 var settings_menu := "res://scenes/ui_scenes/settings_menu.tscn"
@@ -13,6 +13,8 @@ var res_settings: Dictionary = {"1280 x 720": Vector2i(1280, 720),
 
 var config: ConfigFile
 func _ready() -> void:
+	
+	settings_button.disabled = true
 	
 	config = ConfigFile.new()
 	var error = config.load(user_config_path)
@@ -30,10 +32,6 @@ func _ready() -> void:
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, config.get_value("display", "borderless_flag", false))
 	
 	centre_window()
-	
-	print(config.get_sections())
-	print(config.get_section_keys("audio"))
-	print(config.get_section_keys("display"))
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("reset_res_window_mode"):

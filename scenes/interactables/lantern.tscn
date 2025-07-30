@@ -1,10 +1,46 @@
-[gd_scene load_steps=11 format=3 uid="uid://dj1reyris0xtv"]
+[gd_scene load_steps=48 format=3 uid="uid://dj1reyris0xtv"]
 
 [ext_resource type="Script" uid="uid://c26vaoejevewd" path="res://scripts/interactables/lantern.gd" id="1_7p4cm"]
 [ext_resource type="AudioStream" uid="uid://coeky8lmwct3c" path="res://assets/audio/sfx/interactables/lantern/lantern_sound.wav" id="1_lnnlg"]
+[ext_resource type="Texture2D" uid="uid://b2u4wi1x3nfl0" path="res://assets/sprites/animations/interactables/lantern/lantern1.png" id="3_y4ugl"]
+[ext_resource type="Texture2D" uid="uid://baisr2oe7xgb8" path="res://assets/sprites/animations/interactables/lantern/lantern2.png" id="4_jajmc"]
+[ext_resource type="Texture2D" uid="uid://bkipra0kjtarp" path="res://assets/sprites/animations/interactables/lantern/lantern3.png" id="5_m66cn"]
+[ext_resource type="Texture2D" uid="uid://c8j6qnman5rda" path="res://assets/sprites/animations/interactables/lantern/lantern4.png" id="6_6xvak"]
+[ext_resource type="Texture2D" uid="uid://byyalrqp0a0qg" path="res://assets/sprites/animations/interactables/lantern/lantern5.png" id="7_rick3"]
+[ext_resource type="Texture2D" uid="uid://c27fad77i7b21" path="res://assets/sprites/animations/interactables/lantern/lantern6.png" id="8_tsw2f"]
+[ext_resource type="Texture2D" uid="uid://65mpc36c64bh" path="res://assets/sprites/animations/interactables/lantern/lantern7.png" id="9_2msau"]
+[ext_resource type="Texture2D" uid="uid://cqriax2j7qis" path="res://assets/sprites/animations/interactables/lantern/lantern8.png" id="10_k6cb3"]
+[ext_resource type="Texture2D" uid="uid://dg4nb12ja7aen" path="res://assets/sprites/animations/interactables/lantern/lantern9.png" id="11_5k3im"]
+[ext_resource type="Texture2D" uid="uid://wf88bbn6jaja" path="res://assets/sprites/animations/interactables/lantern/lantern10.png" id="12_b3lm0"]
+[ext_resource type="Texture2D" uid="uid://bv5scuxtbb43y" path="res://assets/sprites/animations/interactables/lantern/lantern11.png" id="13_vwtna"]
+[ext_resource type="Texture2D" uid="uid://gqrqr16f7rur" path="res://assets/sprites/animations/interactables/lantern/lantern12.png" id="14_yciq7"]
+[ext_resource type="Texture2D" uid="uid://hykbfoj1r2jx" path="res://assets/sprites/animations/interactables/lantern/lantern13.png" id="15_q876u"]
+[ext_resource type="Texture2D" uid="uid://std8xib8t7u7" path="res://assets/sprites/animations/interactables/lantern/lantern14.png" id="16_p4vhd"]
+[ext_resource type="Texture2D" uid="uid://cjjw6ef72dk65" path="res://assets/sprites/animations/interactables/lantern/lantern15.png" id="17_6i8as"]
+[ext_resource type="Texture2D" uid="uid://dwu3wphun4jbn" path="res://assets/sprites/animations/interactables/lantern/lantern16.png" id="18_ovta4"]
+[ext_resource type="Texture2D" uid="uid://jcekrwu57dm2" path="res://assets/sprites/animations/interactables/lantern/lantern17.png" id="19_tbkib"]
+[ext_resource type="Texture2D" uid="uid://h1ubyewteq8n" path="res://assets/sprites/animations/interactables/lantern/lantern18.png" id="20_xvily"]
+[ext_resource type="Texture2D" uid="uid://dnk3a6m2efrr6" path="res://assets/sprites/animations/interactables/lantern/lantern19.png" id="21_55vnl"]
+[ext_resource type="Texture2D" uid="uid://0d7m5frcgq0q" path="res://assets/sprites/animations/interactables/lantern/lantern20.png" id="22_1qm01"]
+[ext_resource type="Texture2D" uid="uid://c358upfbwoifo" path="res://assets/sprites/animations/interactables/lantern/lantern21.png" id="23_qg0xd"]
+[ext_resource type="Texture2D" uid="uid://41ukp3y7277y" path="res://assets/sprites/animations/interactables/lantern/lantern22.png" id="24_5twnw"]
+[ext_resource type="Texture2D" uid="uid://dwkbvjvu8gunl" path="res://assets/sprites/animations/interactables/lantern/lantern23.png" id="25_l0cal"]
+[ext_resource type="Texture2D" uid="uid://ddkp8xsy55eu1" path="res://assets/sprites/animations/interactables/lantern/lantern24.png" id="26_whg7s"]
+[ext_resource type="Texture2D" uid="uid://buu2n3i3aqoka" path="res://assets/sprites/animations/interactables/lantern/lantern25.png" id="27_52vue"]
+[ext_resource type="Texture2D" uid="uid://x22h5xqsgiim" path="res://assets/sprites/animations/interactables/lantern/lantern26.png" id="28_uife1"]
+[ext_resource type="Texture2D" uid="uid://b1ajw3uie6ah4" path="res://assets/sprites/animations/interactables/lantern/lantern27.png" id="29_gic6x"]
+[ext_resource type="Texture2D" uid="uid://cw0wod782i0ur" path="res://assets/sprites/animations/interactables/lantern/lantern28.png" id="30_k8y3u"]
+[ext_resource type="Texture2D" uid="uid://dhvy032s1nexm" path="res://assets/sprites/animations/interactables/lantern/lantern29.png" id="31_yw450"]
+[ext_resource type="Texture2D" uid="uid://bmmb5n1hkaxnw" path="res://assets/sprites/animations/interactables/lantern/lantern30.png" id="32_brt5e"]
+[ext_resource type="Texture2D" uid="uid://dnr0a257fcxhh" path="res://assets/sprites/animations/interactables/lantern/lantern31.png" id="33_pqs2k"]
+[ext_resource type="Texture2D" uid="uid://iea57xuryanm" path="res://assets/sprites/animations/interactables/lantern/lantern32.png" id="34_lv3bh"]
+[ext_resource type="Texture2D" uid="uid://de0t5yxreefwr" path="res://assets/sprites/animations/interactables/lantern/lantern33.png" id="35_ehwej"]
+[ext_resource type="Texture2D" uid="uid://j1vbi18tbyow" path="res://assets/sprites/animations/interactables/lantern/lantern34.png" id="36_sitxt"]
+[ext_resource type="Texture2D" uid="uid://bmt4q6r2w4r4j" path="res://assets/sprites/animations/interactables/lantern/lantern35.png" id="37_a3cmx"]
+[ext_resource type="Texture2D" uid="uid://beqjd2cdethc" path="res://assets/sprites/animations/interactables/lantern/lantern36.png" id="38_cwx8h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5q5je"]
-size = Vector2(8, 8)
+size = Vector2(3, 29)
 
 [sub_resource type="Curve" id="Curve_lnnlg"]
 _limits = [0.0, 200.0, 0.0, 1.0]
@@ -25,16 +61,143 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -0.213483), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7p4cm"]
-size = Vector2(8, 8)
+size = Vector2(12, 19)
 
-[sub_resource type="Gradient" id="Gradient_7p4cm"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+[sub_resource type="SpriteFrames" id="SpriteFrames_7p4cm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("32_brt5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_pqs2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_lv3bh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_ehwej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_sitxt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_a3cmx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_cwx8h")
+}],
+"loop": false,
+"name": &"dim",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_y4ugl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jajmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_m66cn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6xvak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rick3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tsw2f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2msau")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_k6cb3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5k3im")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_b3lm0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_vwtna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_yciq7")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_q876u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_p4vhd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_6i8as")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_ovta4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_tbkib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_xvily")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_55vnl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_1qm01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_qg0xd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_5twnw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_l0cal")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_whg7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_52vue")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_uife1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_gic6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_k8y3u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_yw450")
+}],
+"loop": true,
+"name": &"light_on",
+"speed": 10.0
+}]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_p567b"]
-gradient = SubResource("Gradient_7p4cm")
+[sub_resource type="Gradient" id="Gradient_y4ugl"]
+offsets = PackedFloat32Array(0, 0.207792, 0.415584, 0.707792)
+colors = PackedColorArray(0.964706, 0.882353, 0.678431, 1, 0.644531, 0.58951, 0.453268, 1, 0.351563, 0.321551, 0.247237, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ulpct"]
+gradient = SubResource("Gradient_y4ugl")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.85, 0.85)
+fill_to = Vector2(1, 1)
 
 [node name="lantern" type="StaticBody2D"]
 z_index = 5
@@ -45,6 +208,7 @@ collision_mask = 0
 script = ExtResource("1_7p4cm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -12.5)
 shape = SubResource("RectangleShape2D_5q5je")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
@@ -78,22 +242,23 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CoinDetectArea"]
+position = Vector2(17, -23.5)
 shape = SubResource("RectangleShape2D_7p4cm")
 debug_color = Color(0.317439, 0.497184, 0.984404, 0.42)
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-z_index = 5
-z_as_relative = false
-color = Color(0.745023, 0.50203, 0.222784, 1)
-energy = 0.2
-shadow_filter = 1
-texture = SubResource("GradientTexture2D_p567b")
-texture_scale = 0.2
 
 [node name="LightDimTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="LightTextureTimer" type="Timer" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(15, -22)
+sprite_frames = SubResource("SpriteFrames_7p4cm")
+animation = &"dim"
+frame = 6
+frame_progress = 1.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(17, -16)
+texture = SubResource("GradientTexture2D_ulpct")
 
 [connection signal="area_entered" from="CoinDetectArea" to="." method="_on_coin_detect_area_area_entered"]
-[connection signal="timeout" from="LightTextureTimer" to="." method="_on_light_texture_timer_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

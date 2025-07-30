@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://k08p5xakkmq6"]
+
+[ext_resource type="Script" uid="uid://c6mhjkrjpkkvl" path="res://scripts/management/event_flag.gd" id="1_cbhnq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnq4i"]
+size = Vector2(246, 130)
+
+[node name="EventFlag" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_cbhnq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dnq4i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

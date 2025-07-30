@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://hxbop65je803"]
+
+[node name="DoorLight" type="Sprite2D"]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
