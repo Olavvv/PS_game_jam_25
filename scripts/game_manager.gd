@@ -5,6 +5,7 @@ extends Node
 @onready var coin_ui: TextureRect = %CoinUI
 @onready var heart_ui: AnimatedSprite2D = %HeartUI
 @onready var event_flags: Array[Area2D] = [%EventFlag, %EventFlag2, %EventFlag3]
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var chaser_scene: PackedScene = load("res://scenes/chars/the_chaser.tscn")
 var chaser = null
@@ -23,6 +24,9 @@ var ingame_settings_menu: PackedScene = load("res://scenes/ui_scenes/settings_me
 var settings_scene
 
 func _ready() -> void:
+	get_tree().paused = true
+	animation_player.play("start")
+	
 	levers[0].activate.connect(_on_blue_lever_activate)
 	levers[1].activate.connect(_on_yellow_lever_activate)
 	levers[2].activate.connect(_on_red_lever_activate)
@@ -104,3 +108,7 @@ func _on_red_lever_activate():
 
 func _on_player_death():
 	get_tree().change_scene_to_file("res://scenes/cutscenes/death_cutscene.tscn")
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	get_tree().paused = false

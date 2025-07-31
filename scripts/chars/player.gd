@@ -42,8 +42,7 @@ func _process(delta: float) -> void:
 	coin_pickup()
 	animation_handler()
 	
-	## DRAW DEBUG STUFF
-	#queue_redraw()
+
 
 func _physics_process(delta: float) -> void:
 	var direction := Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
@@ -79,17 +78,16 @@ func coin_pickup() -> void:
 
 
 func aim_point_update() -> void:
-	var root = get_tree().get_root()
-	var bars = (DisplayServer.screen_get_size() - root.size) / 2
-	var corrected_mouse_pos = get_global_mouse_position() - Vector2(bars)
-	var aim_direction = to_local(corrected_mouse_pos).normalized()
+	var global_mouse_pos = get_global_mouse_position()
+	var aim_direction = (global_mouse_pos - global_position).normalized()
 	var aim_point = (aim_direction * AIM_CIRCLE_RADIUS)
 	
 	if not has_coin and Input.is_action_pressed("build_strength"):
 		print("YOU HAVE NO COIN TO SHOOT")
 	
 	elif Input.is_action_pressed("build_strength") and has_coin:
-		aim_point = aim_point.move_toward(to_local(corrected_mouse_pos).normalized() * max_aim_dist_mult, aim_strength)
+		var max_distance = max_aim_dist_mult * aim_strength
+		aim_point = aim_point.move_toward(to_local(global_mouse_pos).normalized() * max_aim_dist_mult, aim_strength)
 		toss_location = aim_point
 		aim_strength += 0.2
 	
@@ -97,7 +95,7 @@ func aim_point_update() -> void:
 		aim_strength = 0.5
 		coin = coin_scene.instantiate()
 		get_tree().root.add_child(coin)
-		coin.transform = transform
+		coin.global_position = global_position
 		coin.throw(to_global(toss_location))
 		has_coin = false
 	
@@ -132,11 +130,6 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 	if (animation_sprite.frame == 3) or (animation_sprite.frame == 7):
 		walking_sound_player.play()
 
-
-## DEBUG
-func _draw() -> void:
-	if toss_location:
-		draw_circle(toss_location, 2.0, Color.RED)
 
 
 func _on_death_circle_body_entered(body: Node2D) -> void:

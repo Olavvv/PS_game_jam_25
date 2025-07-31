@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PS_game_jam_25"
-run/main_scene="uid://dtai8y00j0t1r"
+run/main_scene="uid://dunrpckgtjt4g"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
 [debug]
@@ -23,7 +23,7 @@ shapes/collision/draw_2d_outlines=false
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/subwindows/embed_subwindows=false
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 

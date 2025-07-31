@@ -49,7 +49,7 @@ func centre_window():
 	get_window().set_position(centre_screen - window_size/2)
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file(main_game)
+	get_tree().change_scene_to_file("res://scenes/cutscenes/intro_cutscene.tscn")
 
 
 func _on_settings_pressed() -> void:

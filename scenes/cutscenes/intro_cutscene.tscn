@@ -1,6 +1,10 @@
-[gd_scene format=3 uid="uid://d33eyjdwxt88o"]
+[gd_scene load_steps=3 format=3 uid="uid://d33eyjdwxt88o"]
+
+[ext_resource type="VideoStream" uid="uid://bngf2gjil126m" path="res://assets/video/output.ogv" id="1_1iurh"]
+[ext_resource type="Script" uid="uid://c0u2gmascsxil" path="res://scripts/cutscenes/intro_cutscene.gd" id="1_8464f"]
 
 [node name="IntroCutscene" type="AnimationPlayer"]
+script = ExtResource("1_8464f")
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 anchors_preset = 15
@@ -8,3 +12,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+stream = ExtResource("1_1iurh")
+volume_db = -25.0
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
